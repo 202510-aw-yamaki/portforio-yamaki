@@ -316,6 +316,22 @@ a:hover { color: var(--black); }
   margin-bottom: 0;
 }
 
+.screenshot-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.screenshot-item {
+  margin: 0;
+}
+
+.screenshot-item img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+}
+
 /* --- Prompt Box (Gemini Style) --- */
 .prompt-box {
   background: linear-gradient(135deg, #4285F4 0%, #9B72CB 50%, #D96570 100%);
@@ -734,6 +750,10 @@ body.sidebar-collapsed .main-content {
 
   .flow-arrow {
     transform: rotate(90deg);
+  }
+
+  .screenshot-gallery {
+    grid-template-columns: 1fr;
   }
 }
 
