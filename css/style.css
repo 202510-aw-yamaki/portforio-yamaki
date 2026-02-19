@@ -639,9 +639,9 @@ a:hover { color: var(--black); }
   flex-shrink: 0;
 }
 
-/* --- Hamburger (mobile) --- */
+/* --- Hamburger --- */
 .hamburger {
-  display: none;
+  display: flex;
   position: fixed;
   top: 16px;
   left: 16px;
@@ -665,6 +665,16 @@ a:hover { color: var(--black); }
   transition: all 0.3s;
 }
 
+body.sidebar-collapsed .sidebar {
+  transform: translateX(calc(-1 * var(--sidebar-width)));
+  transition: transform 0.3s ease;
+}
+
+body.sidebar-collapsed .main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
 /* --- Icon --- */
 .icon-sm {
   font-size: 18px;
@@ -682,10 +692,6 @@ a:hover { color: var(--black); }
 }
 
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.3s;

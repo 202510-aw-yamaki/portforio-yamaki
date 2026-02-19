@@ -89,13 +89,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // ナビゲーションを生成
   generateNavigation();
 
-  // Sidebar toggle for mobile
+  // Sidebar toggle (desktop + mobile)
   const hamburger = document.querySelector('.hamburger');
   const sidebar = document.querySelector('.sidebar');
+  const SIDEBAR_KEY = 'sidebarCollapsedDesktop';
 
   if (hamburger && sidebar) {
+    if (!sidebar.id) {
+      sidebar.id = 'sidebar-nav';
+    }
+    hamburger.setAttribute('aria-label', 'メニュー開閉');
+    hamburger.setAttribute('aria-controls', sidebar.id);
+
+    const isDesktop = () => window.innerWidth > 768;
+    const syncAria = () => {
+      const expanded = isDesktop()
+        ? !document.body.classList.contains('sidebar-collapsed')
+        : sidebar.classList.contains('open');
+      hamburger.setAttribute('aria-expanded', String(expanded));
+    };
+
+    const applyDesktopState = () => {
+      if (!isDesktop()) {
+        document.body.classList.remove('sidebar-collapsed');
+        syncAria();
+        return;
+      }
+      const collapsed = localStorage.getItem(SIDEBAR_KEY) === '1';
+      document.body.classList.toggle('sidebar-collapsed', collapsed);
+      syncAria();
+    };
+
+    applyDesktopState();
+
     hamburger.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+      if (isDesktop()) {
+        const nextCollapsed = !document.body.classList.contains('sidebar-collapsed');
+        document.body.classList.toggle('sidebar-collapsed', nextCollapsed);
+        localStorage.setItem(SIDEBAR_KEY, nextCollapsed ? '1' : '0');
+      } else {
+        sidebar.classList.toggle('open');
+      }
+      syncAria();
     });
 
     // Close sidebar when clicking outside
@@ -112,9 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           sidebar.classList.remove('open');
+          syncAria();
         }
       });
     });
+
+    window.addEventListener('resize', applyDesktopState);
   }
 
   // Set active nav item based on current page
