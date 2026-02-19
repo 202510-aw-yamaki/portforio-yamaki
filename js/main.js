@@ -33,7 +33,7 @@ function generateNavigation() {
 
   const navHTML = `
     <div class="sidebar-header">
-      <div class="logo">PROJECT ARCHIVE</div>
+      <div class="logo">//////PROJECT ARCHIVE</div>
       <div class="project-name"><br>プロジェクトアーカイブ</div>
     </div>
     <nav class="sidebar-nav">
@@ -136,8 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close sidebar when clicking outside
     document.addEventListener('click', (e) => {
       if (sidebar.classList.contains('open') &&
-          !sidebar.contains(e.target) &&
-          !hamburger.contains(e.target)) {
+        !sidebar.contains(e.target) &&
+        !hamburger.contains(e.target)) {
         sidebar.classList.remove('open');
       }
     });
