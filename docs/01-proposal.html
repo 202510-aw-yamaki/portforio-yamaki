@@ -123,16 +123,16 @@
           <div class="fill-block">
             <div class="fill-label">サービスの特長 <span class="required">必須</span></div>
             <div class="fill-content">
-              <p>（サービスの特長を3つ記載）</p>
+              <p>＜特徴＞<br>
+                日本地図で選ぶ「産地ストーリー前調べ」<br>
+                ＜説明＞<br>
+                日本地図から産地を選び、作り手の声や映像で背景を知れ、<br>その土地の香りに思いを馳せる。
+                <br>＜ユーザーにとってのメリット＞<br>
+                「ただ混ぜる」体験ではなく、<br>旅・学び・物語として記憶に残り、<br>同伴者にも語れ、
+                ものだけでなく、<br>作り手の声や顔もまた、帰宅後のお土産になる。
+              </p>
             </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）の特長を3つ提案してください。
-                競合サービスと差別化できるポイントを含め、各特長は以下の形式で記載してください。
-                ・特長の名称（一言）
-                ・説明（50〜80字）
-                ・ユーザーにとってのメリット</div>
-            </div>
+
           </div>
 
         </section>
@@ -144,30 +144,108 @@
             <div class="fill-label">Webサイト（フロントエンド）の範囲 <span class="required">必須</span></div>
             <div class="fill-hint">制作するWebサイトのページ一覧と概要</div>
             <div class="fill-content">
-              <p>（Webサイトのページ一覧を記載）</p>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）のWebサイトに必要なページ構成を提案してください。
-                以下の形式で5ページ以上リストアップしてください。
-                ・ページ名
-                ・ページの目的
-                ・主要コンテンツ</div>
+              <p>【サイト構成】<br>
+                トップページ<br>
+                （Home：index.html）（日本地図+アイコン）<br>
+                【コンテンツページ】<br>
+                /hokkaido/index.html（北海道地図＋アイコン）<br>
+                /tohoku/index.html（東北地図＋アイコン）<br>
+                /kanto/index.html（関東拡大地図＋アイコン）<br>
+                /chubu/index.html（中部拡大地図＋アイコン）<br>
+                /kansai/index.html（関西拡大地図＋アイコン）<br>
+                /tyuugoku/index.html（中国拡大地図＋アイコン）<br>
+                /shikoku/index.html（四国拡大地図＋アイコン）<br>
+                /kyushu/index.html（九州拡大地図＋アイコン）<br>
+                /legal/privacy.html<br>
+                /legal/terms.html<br>
+                +（必要なら特商法等）<br>
+                +　内部モーダル用のページ
+              </p>
             </div>
           </div>
           <div class="fill-block">
             <div class="fill-label">Webアプリケーション（サーバーサイド）の範囲 <span class="required">必須</span></div>
             <div class="fill-hint">制作するWebアプリケーションの機能概要</div>
             <div class="fill-content">
-              <p>（Webアプリの機能一覧を記載）</p>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）の管理システムとして必要な機能を提案してください。
-                以下の形式で記載してください。
-                ・機能名
-                ・概要
-                ・優先度（Must / Should / Could）</div>
+              <p>コンテンツ管理（地方・スポット・外部リンクのCRUD）<br>
+                地方（/hokkaido等）と、地方内スポット（例：nakagawa）を<br>
+                登録・編集・削除。各スポットを紐付け。<br>
+                優先度：Must<br>
+                <br>
+                地図アイコン配置エディタ（座標付与）<br>
+                地方ページの地図（SVG想定）上で、座標を保存（viewBox基準の正規化座標）。<br>
+                優先度：Must<br>
+                <br>
+                ブランドナビリンク管理<br>
+                ヘッダーの提灯ナビ（ブランド名一覧）の表示順・表示名・リンク先（既存ブランドページ）を管理。<br>
+                優先度：Must<br>
+                <br>
+                予約CTAリンク管理<br>
+                Homeおよび地方ページの固定CTAの遷移先URL、文言、表示条件（常時/スクロール後など）を管理。<br>
+                優先度：Must<br>
+                <br>
+                ページテンプレ設定（Home / 地方 共通）<br>
+                Homeと地方ページの共通レイアウト（ヘッダー/フッター/CTA/パンくず等）
+                をテンプレとして管理し、
+                差分だけ設定可能にする。<br>
+                優先度：Must<br>
+                <br>
+                プレビュー（下書き）環境<br>
+                変更内容を本番公開前に確認できるプレビューURL（ステージング）を提供。<br>
+                地図クリックや外部遷移も含めて動作確認可能。<br>
+                公開ワークフロー（ドラフト→公開）<br>
+                下書き保存・公開・公開停止、公開日時予約（任意）などの状態管理。<br>
+                優先度：Must<br>
+                <br>
+                リンク健全性チェック（外部リンク死活監視）<br>
+                登録された外部遷移URLの404/リダイレクト/タイムアウトを定期チェックし、壊れたリンクを検知。<br>
+                優先度：Must<br>
+                <br>
+                権限管理（ロール/ユーザー）<br>
+                編集者・承認者・閲覧のみ等のロールを用意し、公開権限を制御。<br>
+                優先度：Must<br>
+                <br>
+                変更履歴（監査ログ）<br>
+                誰が・いつ・何を変更したか（特にURLと地図座標）を記録し、差分を追跡。<br>
+                優先度：Should<br>
+                <br>
+                OGP/SEOメタ管理（ページ別）<br>
+                地方ページごとにtitle/description/OGP画像/OGP文言を設定。SNSシェア最適化。<br>
+                優先度：Should<br>
+                <br>
+                リダイレクト管理<br>
+                URL変更時の301設定、誤URLの救済（/region/hokkaido → /hokkaido 等）を管理。<br>
+                優先度：Should<br>
+                <br>
+                アクセス解析イベント設定（クリック計測）<br>
+                「地方クリック」「スポットクリック」「予約CTAクリック」
+                <br>「ブランドリンククリック」をイベントとして定義・ON/OFF・命名管理。<br>
+                優先度：Should<br>
+                <br>
+                簡易ダッシュボード（KPI可視化）<br>
+                地方別のクリック率、スポット別の外部遷移数、予約CTAクリック数などの主要指標を集計表示。<br>
+                優先度：Should<br>
+                <br>
+                アセット管理（SVG/アイコン/OGP画像）<br>
+                地図SVG、スポットアイコン画像、OGP画像などをアップロード・差し替え・バージョン管理。<br>
+                優先度：Should<br>
+                <br>
+                多言語対応（表示名・説明の言語切替）<br>
+                地方名/スポット名/CTA文言などを言語別に持てるようにする（インバウンド対応）。<br>
+                優先度：Could<br>
+                <br>
+                A/Bテスト設定（CTA文言・配置など）<br>
+                予約CTA文言・表示位置・Homeの地図導入文などをテストし、勝ちパターンを採用できる仕組み。<br>
+                優先度：Could<br>
+                <br>
+                エラー監視（JS例外・表示崩れ）<br>
+                フロントのエラー収集、特定ページでのクラッシュやリンク失敗のアラート。<br>
+                優先度：Could<br>
+                <br>
+                Sitemap/robots.txt自動生成<br>
+                公開中ページからsitemap.xmlを生成し、クロール最適化（地方ページの発見性向上）。<br>
+                優先度：Could
+              </p>
             </div>
           </div>
 
