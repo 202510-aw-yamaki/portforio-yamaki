@@ -470,67 +470,195 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="template-row">
+                <tr>
                   <td>/</td>
                   <td>GET</td>
-                  <td>トップページ</td>
-                  <td>Webサイトのトップ</td>
+                  <td>Home</td>
+                  <td>トップページ（予約CTA＋全国地図）</td>
                 </tr>
-                <tr class="template-row">
-                  <td>/about</td>
+                <tr>
+                  <td>/regions</td>
                   <td>GET</td>
-                  <td>概要ページ</td>
-                  <td>サービスの概要</td>
+                  <td>地方一覧</td>
+                  <td>地方の一覧（北海道〜九州）</td>
                 </tr>
-                <tr class="template-row">
-                  <td>/app/login</td>
+                <tr>
+                  <td>/regions/{region}</td>
                   <td>GET</td>
-                  <td>ログイン画面</td>
-                  <td>ログインフォーム表示</td>
+                  <td>地方ページ</td>
+                  <td>各地方の拡大地図ページ（hokkaido など）</td>
                 </tr>
-                <tr class="template-row">
-                  <td>/app/login</td>
-                  <td>POST</td>
-                  <td>ログイン処理</td>
-                  <td>認証処理</td>
-                </tr>
-                <tr class="template-row">
-                  <td>/app/items</td>
+                <tr>
+                  <td>/spots</td>
                   <td>GET</td>
-                  <td>一覧画面</td>
-                  <td>データ一覧表示</td>
+                  <td>特産・地点一覧</td>
+                  <td>全地方の地点/特産の一覧</td>
                 </tr>
-                <tr class="template-row">
-                  <td>/app/items/new</td>
+                <tr>
+                  <td>/spots/{spot}</td>
                   <td>GET</td>
-                  <td>新規登録画面</td>
-                  <td>登録フォーム表示</td>
+                  <td>特産・地点詳細</td>
+                  <td>各特産/地点の詳細（外部WANOWA等への遷移導線含む）</td>
                 </tr>
-                <tr class="template-row">
-                  <td>/app/items</td>
-                  <td>POST</td>
-                  <td>新規登録処理</td>
-                  <td>データ保存</td>
+                <tr>
+                  <td>/brands</td>
+                  <td>GET</td>
+                  <td>ブランド一覧</td>
+                  <td>ヘッダー導線用のブランド一覧</td>
                 </tr>
-                <tr class="template-row">
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
+                <tr>
+                  <td>/brands/{brand}</td>
+                  <td>GET</td>
+                  <td>ブランドページ</td>
+                  <td>各ブランドの遷移先ページ（内部/外部）</td>
+                </tr>
+                <tr>
+                  <td>/legal/privacy</td>
+                  <td>GET</td>
+                  <td>プライバシー</td>
+                  <td>プライバシーポリシー</td>
+                </tr>
+                <tr>
+                  <td>/legal/terms</td>
+                  <td>GET</td>
+                  <td>利用規約</td>
+                  <td>利用規約</td>
                 </tr>
               </tbody>
             </table>
-
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）のURL設計を行ってください。
-
-                Webサイト部分とSpring Bootアプリ部分に分けて、RESTfulなURL設計にしてください。
-                以下の形式でリストアップしてください。
-                | URL | HTTPメソッド | 画面/機能 | 説明 |
-
-                機能一覧：（企画提案書で定義した機能を記載）</div>
-            </div>
+            <h3>Spring Bootアプリ部分（管理システム）</h3>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>HTTPメソッド</th>
+                  <th>画面/機能</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>/login</td>
+                  <td>GET</td>
+                  <td>ログイン画面</td>
+                  <td>認証フォーム表示</td>
+                </tr>
+                <tr>
+                  <td>/session</td>
+                  <td>POST</td>
+                  <td>ログイン実行</td>
+                  <td>認証してセッション作成</td>
+                </tr>
+                <tr>
+                  <td>/session</td>
+                  <td>DELETE</td>
+                  <td>ログアウト</td>
+                  <td>セッション破棄</td>
+                </tr>
+                <tr>
+                  <td>/logout-complete</td>
+                  <td>GET</td>
+                  <td>ログアウト完了</td>
+                  <td>ログアウト後画面（任意）</td>
+                </tr>
+                <tr>
+                  <td>/admin</td>
+                  <td>GET</td>
+                  <td>ダッシュボード</td>
+                  <td>管理トップ</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations</td>
+                  <td>GET</td>
+                  <td>地点一覧・検索</td>
+                  <td>地点リソース一覧</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations/new</td>
+                  <td>GET</td>
+                  <td>地点追加画面</td>
+                  <td>新規登録フォーム</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations</td>
+                  <td>POST</td>
+                  <td>地点追加実行</td>
+                  <td>新規地点を作成</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations/{id}</td>
+                  <td>GET</td>
+                  <td>地点詳細</td>
+                  <td>地点詳細表示</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations/{id}/edit</td>
+                  <td>GET</td>
+                  <td>地点編集画面</td>
+                  <td>編集フォーム</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations/{id}</td>
+                  <td>PATCH</td>
+                  <td>地点更新</td>
+                  <td>地点情報を更新</td>
+                </tr>
+                <tr>
+                  <td>/admin/locations/{id}</td>
+                  <td>DELETE</td>
+                  <td>地点削除</td>
+                  <td>地点を削除</td>
+                </tr>
+                <tr>
+                  <td>/admin/images</td>
+                  <td>GET</td>
+                  <td>画像一覧</td>
+                  <td>画像リソース一覧</td>
+                </tr>
+                <tr>
+                  <td>/admin/images/new</td>
+                  <td>GET</td>
+                  <td>画像アップロード画面</td>
+                  <td>画像登録フォーム</td>
+                </tr>
+                <tr>
+                  <td>/admin/images</td>
+                  <td>POST</td>
+                  <td>画像アップロード実行</td>
+                  <td>画像作成</td>
+                </tr>
+                <tr>
+                  <td>/admin/images/{id}</td>
+                  <td>GET</td>
+                  <td>画像詳細</td>
+                  <td>画像メタ情報表示</td>
+                </tr>
+                <tr>
+                  <td>/admin/images/{id}</td>
+                  <td>DELETE</td>
+                  <td>画像削除</td>
+                  <td>画像削除</td>
+                </tr>
+                <tr>
+                  <td>/admin/publish-settings</td>
+                  <td>GET</td>
+                  <td>公開設定画面</td>
+                  <td>公開/非公開・表示順設定</td>
+                </tr>
+                <tr>
+                  <td>/admin/publish-settings</td>
+                  <td>PATCH</td>
+                  <td>公開設定更新</td>
+                  <td>公開状態や表示順を更新</td>
+                </tr>
+                <tr>
+                  <td>/admin/audit-logs</td>
+                  <td>GET</td>
+                  <td>監査ログ一覧・検索</td>
+                  <td>操作履歴の参照（読み取り専用）</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
