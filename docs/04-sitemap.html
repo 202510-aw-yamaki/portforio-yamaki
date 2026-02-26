@@ -91,83 +91,84 @@
                 　 ├─ privacy.html<br>
                 　 └─ terms.html</p>
             </div>
-            <div class="fill-block">
-              <div class="fill-label">Webアプリケーション構造図 <span class="required">必須</span></div>
-              <div class="fill-content">
-                <p>管理システム（Spring Boot）<br>
-                  <br>
-                  ├─ ログイン前<br>
-                  │ ├─ /login（ログイン画面）<br>
-                  │ │ ├─ ID/メール入力<br>
-                  │ │ ├─ パスワード入力<br>
-                  │ │ └─ ログイン実行<br>
-                  │ └─ /logout-complete（ログアウト後画面）※任意<br>
-                  │<br>
-                  └─ ログイン後<br>
-                  ├─ /admin（管理トップ）<br>
-                  │<br>
-                  ├─ 地点管理（各地方）<br>
-                  │ ├─ /admin/locations（一覧・検索）<br>
-                  │ ├─ /admin/locations/new（追加）<br>
-                  │ ├─ /admin/locations/{id}/edit（編集）<br>
-                  │ └─ /admin/locations/{id}/delete（削除）<br>
-                  │<br>
-                  ├─ 画像管理<br>
-                  │ ├─ /admin/images（一覧）<br>
-                  │ ├─ /admin/images/upload（追加）<br>
-                  │ └─ /admin/images/{id}/delete（削除）<br>
-                  │<br>
-                  ├─ 公開設定<br>
-                  │ ├─ /admin/publish（公開/非公開）<br>
-                  │ └─ /admin/publish/order（表示順）<br>
-                  │<br>
-                  ├─ 監査ログ<br>
-                  │ └─ /admin/audit-logs（操作履歴一覧・検索）<br>
-                  │<br>
-                  └─ 共通機能（全管理画面）<br>
-                  ├─ ヘッダー（ユーザー情報、ログアウト、主要メニュー）<br>
-                  ├─ ページネーション（一覧画面）<br>
-                  ├─ バリデーション（入力チェック・エラー表示）<br>
-                  └─ 権限（Admin/Editor などのアクセス制御）<br>
-                  <br>
-                  [ログイン前]<br>
-                  開始<br>
-                  ↓<br>
-                  ログイン画面(/login)<br>
-                  ├─ 認証成功 → 管理トップ(/admin)<br>
-                  └─ 認証失敗 → ログイン画面(/login)［エラー表示］<br>
-                  <br>
-                  <br>
-                  [ログイン後]<br>
-                  管理トップ(/admin)<br>
-                  ├→ 地点管理 一覧・検索(/admin/locations)<br>
-                  │ ├→ 追加(/admin/locations/new) → 保存 → 一覧(/admin/locations)<br>
-                  │ ├→ 編集(/admin/locations/{id}/edit) → 保存 → 一覧(/admin/locations)<br>
-                  │ └→ 削除(/admin/locations/{id}/delete) → 実行 → 一覧(/admin/locations)<br>
-                  │<br>
-                  ├→ 画像管理 一覧(/admin/images)<br>
-                  │ ├→ 追加(/admin/images/upload) → 保存 → 一覧(/admin/images)<br>
-                  │ └→ 削除(/admin/images/{id}/delete) → 実行 → 一覧(/admin/images)<br>
-                  │<br>
-                  ├→ 公開設定(/admin/publish)<br>
-                  │ ├→ 公開/非公開 切替 → 公開設定(/admin/publish)<br>
-                  │ └→ 表示順設定(/admin/publish/order) → 保存 → 公開設定(/admin/publish)<br>
-                  │<br>
-                  ├→ 監査ログ(/admin/audit-logs)<br>
-                  │ └→ 検索/絞り込み → 監査ログ(/admin/audit-logs)<br>
-                  │<br>
-                  └→ ログアウト(/logout) → ログイン画面(/login)<br>
-                  <br>
-                  <br>
-                  [共通機能の適用範囲]<br>
-                  ヘッダー（全管理画面）<br>
-                  ページネーション（/admin/locations, /admin/images, /admin/audit-logs）<br>
-                  バリデーション（追加/編集/公開設定の保存時）<br>
-                  権限制御（未認証: /loginへ、権限不足: 403）
-                </p>
-              </div>
-
+          </div>
+          <div class="fill-block">
+            <div class="fill-label">Webアプリケーション構造図 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <p>管理システム（Spring Boot）<br>
+                <br>
+                ├─ ログイン前<br>
+                │ ├─ /login（ログイン画面）<br>
+                │ │ ├─ ID/メール入力<br>
+                │ │ ├─ パスワード入力<br>
+                │ │ └─ ログイン実行<br>
+                │ └─ /logout-complete（ログアウト後画面）※任意<br>
+                │<br>
+                └─ ログイン後<br>
+                ├─ /admin（管理トップ）<br>
+                │<br>
+                ├─ 地点管理（各地方）<br>
+                │ ├─ /admin/locations（一覧・検索）<br>
+                │ ├─ /admin/locations/new（追加）<br>
+                │ ├─ /admin/locations/{id}/edit（編集）<br>
+                │ └─ /admin/locations/{id}/delete（削除）<br>
+                │<br>
+                ├─ 画像管理<br>
+                │ ├─ /admin/images（一覧）<br>
+                │ ├─ /admin/images/upload（追加）<br>
+                │ └─ /admin/images/{id}/delete（削除）<br>
+                │<br>
+                ├─ 公開設定<br>
+                │ ├─ /admin/publish（公開/非公開）<br>
+                │ └─ /admin/publish/order（表示順）<br>
+                │<br>
+                ├─ 監査ログ<br>
+                │ └─ /admin/audit-logs（操作履歴一覧・検索）<br>
+                │<br>
+                └─ 共通機能（全管理画面）<br>
+                ├─ ヘッダー（ユーザー情報、ログアウト、主要メニュー）<br>
+                ├─ ページネーション（一覧画面）<br>
+                ├─ バリデーション（入力チェック・エラー表示）<br>
+                └─ 権限（Admin/Editor などのアクセス制御）<br>
+                <br>
+                [ログイン前]<br>
+                開始<br>
+                ↓<br>
+                ログイン画面(/login)<br>
+                ├─ 認証成功 → 管理トップ(/admin)<br>
+                └─ 認証失敗 → ログイン画面(/login)［エラー表示］<br>
+                <br>
+                <br>
+                [ログイン後]<br>
+                管理トップ(/admin)<br>
+                ├→ 地点管理 一覧・検索(/admin/locations)<br>
+                │ ├→ 追加(/admin/locations/new) → 保存 → 一覧(/admin/locations)<br>
+                │ ├→ 編集(/admin/locations/{id}/edit) → 保存 → 一覧(/admin/locations)<br>
+                │ └→ 削除(/admin/locations/{id}/delete) → 実行 → 一覧(/admin/locations)<br>
+                │<br>
+                ├→ 画像管理 一覧(/admin/images)<br>
+                │ ├→ 追加(/admin/images/upload) → 保存 → 一覧(/admin/images)<br>
+                │ └→ 削除(/admin/images/{id}/delete) → 実行 → 一覧(/admin/images)<br>
+                │<br>
+                ├→ 公開設定(/admin/publish)<br>
+                │ ├→ 公開/非公開 切替 → 公開設定(/admin/publish)<br>
+                │ └→ 表示順設定(/admin/publish/order) → 保存 → 公開設定(/admin/publish)<br>
+                │<br>
+                ├→ 監査ログ(/admin/audit-logs)<br>
+                │ └→ 検索/絞り込み → 監査ログ(/admin/audit-logs)<br>
+                │<br>
+                └→ ログアウト(/logout) → ログイン画面(/login)<br>
+                <br>
+                <br>
+                [共通機能の適用範囲]<br>
+                ヘッダー（全管理画面）<br>
+                ページネーション（/admin/locations, /admin/images, /admin/audit-logs）<br>
+                バリデーション（追加/編集/公開設定の保存時）<br>
+                権限制御（未認証: /loginへ、権限不足: 403）
+              </p>
             </div>
+
+          </div>
 
         </section>
 
@@ -186,82 +187,115 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="template-row">
-                  <td>1</td>
-                  <td>（トップページ）</td>
-                  <td>（サービスの魅力を伝え、各ページへ誘導）</td>
-                  <td>（ヒーロー、サービス紹介、CTA等）</td>
-                </tr>
-                <tr class="template-row">
-                  <td>2</td>
-                  <td>（ページ名）</td>
-                  <td>（目的を記載）</td>
-                  <td>（コンテンツを記載）</td>
-                </tr>
-                <tr class="template-row">
-                  <td>3</td>
-                  <td>（ページ名）</td>
-                  <td>（目的を記載）</td>
-                  <td>（コンテンツを記載）</td>
-                </tr>
-                <tr class="template-row">
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）のWebサイトのページ一覧を作成してください。
-
-                以下の形式で5ページ以上リストアップしてください。
-                | No. | ページ名 | ページの目的 | 主要コンテンツ |</div>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">Webアプリ 画面一覧 <span class="required">必須</span></div>
-            <table class="doc-table">
-              <thead>
                 <tr>
-                  <th>No.</th>
-                  <th>画面名</th>
-                  <th>画面の目的</th>
-                  <th>主要機能</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="template-row">
                   <td>1</td>
-                  <td>（ログイン画面）</td>
-                  <td>（ユーザー認証）</td>
-                  <td>（メールアドレス/パスワード入力）</td>
+                  <td>Home（/index.html）</td>
+                  <td>サイト入口。予約導線と地方ページへの分岐</td>
+                  <td>ヒーロー（浅草 inimu 予約CTA）、日本地図、地方リンク（北海道〜九州）、法的情報リンク</td>
                 </tr>
-                <tr class="template-row">
+                <tr>
                   <td>2</td>
-                  <td>（一覧画面）</td>
-                  <td>（データの一覧表示）</td>
-                  <td>（検索・ソート・ページネーション）</td>
+                  <td>北海道（/hokkaido/index.html）</td>
+                  <td>北海道の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（中川町: 和薄荷）、詳細外部リンク</td>
                 </tr>
-                <tr class="template-row">
+                <tr>
                   <td>3</td>
-                  <td>（登録画面）</td>
-                  <td>（新規データ登録）</td>
-                  <td>（入力フォーム・バリデーション）</td>
+                  <td>東北（/tohoku/index.html）</td>
+                  <td>東北の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（葛尾村: 紫蘇）、退避先リンク</td>
                 </tr>
-                <tr class="template-row">
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
-                  <td>…</td>
+                <tr>
+                  <td>4</td>
+                  <td>関東（/kanto/index.html）</td>
+                  <td>関東の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（浅草: inimu店舗）、外部リンク</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>中部（/chubu/index.html）</td>
+                  <td>中部の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（加子母ひのき／能登ひば／国造ゆず）、各外部リンク</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>近畿（/kinki/index.html）</td>
+                  <td>近畿の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（和束茶／大和橘）、各外部リンク</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>中国（/chugoku/index.html）</td>
+                  <td>中国地方ページの枠提供（今後拡張）</td>
+                  <td>地方名画像、地点アイコン（未定）</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>四国（/shikoku/index.html）</td>
+                  <td>四国の地点情報案内</td>
+                  <td>地方名画像、地点アイコン（土佐文旦）、外部リンク</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>九州（/kyushu/index.html）</td>
+                  <td>九州地方ページの枠提供（今後拡張）</td>
+                  <td>地方名画像、地点アイコン（未定）</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>プライバシーポリシー（/legal/privacy.html）</td>
+                  <td>個人情報保護方針の提示</td>
+                  <td>パンくず、ポリシー本文（ワイヤー）</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>利用規約（/legal/terms.html）</td>
+                  <td>利用条件の提示</td>
+                  <td>パンくず、規約本文（ワイヤー）</td>
                 </tr>
               </tbody>
             </table>
 
-          </div>
+            <div class="fill-block">
+              <div class="fill-label">Webアプリ 画面一覧 <span class="required">必須</span></div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>画面名</th>
+                    <th>画面の目的</th>
+                    <th>主要機能</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>1</td>
+                    <td>（ログイン画面）</td>
+                    <td>（ユーザー認証）</td>
+                    <td>（メールアドレス/パスワード入力）</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>2</td>
+                    <td>（一覧画面）</td>
+                    <td>（データの一覧表示）</td>
+                    <td>（検索・ソート・ページネーション）</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>3</td>
+                    <td>（登録画面）</td>
+                    <td>（新規データ登録）</td>
+                    <td>（入力フォーム・バリデーション）</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>…</td>
+                    <td>…</td>
+                    <td>…</td>
+                    <td>…</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
         </section>
 
         <section class="section" id="sec3">
