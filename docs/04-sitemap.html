@@ -31,24 +31,6 @@
 
       <div class="doc-body">
 
-        <div class="external-link-box">
-          <div class="external-link-box-title">
-            <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
-          </div>
-          <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細なサイトマップは以下のリンクからご確認ください。
-          </div>
-          <div class="external-link-input">
-            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-04">
-            <a href="#" class="link-btn"
-              onclick="window.open(document.getElementById('external-link-04').value || 'https://docs.google.com', '_blank'); return false;">
-              <span class="material-symbols-outlined">open_in_new</span>
-              開く
-            </a>
-          </div>
-        </div>
-
         <div class="toc">
           <div class="toc-title">目次</div>
           <ol class="toc-list">
@@ -345,19 +327,69 @@
 
           <div class="fill-block">
             <div class="fill-label">メインシナリオ <span class="required">必須</span></div>
-            <div class="fill-hint">ペルソナがサイトに訪問してから目的を達成するまでの動線（メインの行動パターン）</div>
             <div class="fill-content">
-              <p>（メインのユーザーフローを記載）</p>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>ステップ</th>
+                    <th>行動</th>
+                    <th>表示ページ</th>
+                    <th>次のアクション</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>「香り 地方 特産 香水」などで検索し、サイトを発見</td>
+                    <td>Home（/index.html）</td>
+                    <td>ヒーローと地図を見てサイトの目的を把握する</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>予約CTAと日本地図を確認し、地方から探せることを理解</td>
+                    <td>Home（/index.html）</td>
+                    <td>興味のある地方（例：中部）をクリック</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>地方ページで香り素材の候補を一覧で確認</td>
+                    <td>中部（/chubu/index.html）</td>
+                    <td>気になる素材（例：能登ひば）を選択</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>素材の詳細情報を外部ページで確認し、会話ネタを収集</td>
+                    <td>外部詳細ページ（WANOWA等）</td>
+                    <td>他の素材も比較するため戻る</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>別地方の素材も見て、地域ごとの特徴を比較</td>
+                    <td>近畿/四国など各地方ページ</td>
+                    <td>サロンの客層に合う香りテーマを絞る</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>店舗系の導線も確認し、体験先として妥当か判断</td>
+                    <td>関東（/kanto/index.html）</td>
+                    <td>inimu店舗ページへ遷移</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>店舗情報・導線を確認し、実際に利用する意思決定</td>
+                    <td>外部店舗ページ（https://inimu.jp/）</td>
+                    <td>予約手続きへ進む</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>予約完了後、接客トークに使う「香り×地方」案を整理</td>
+                    <td>（外部予約完了後）</td>
+                    <td>来店前メモとして素材エピソードを準備</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">以下のペルソナがWebサイトに訪問してからサービスを利用するまでの行動フローを作成してください。
 
-                ペルソナ：（名前）、（年齢）歳、（職業）
-                目的：（ペルソナの目的を記載）
-
-                ステップごとに「行動」「表示ページ」「次のアクション」を記載してください。</div>
-            </div>
           </div>
           <div class="fill-block">
             <div class="fill-label">サブシナリオ <span class="optional">任意</span></div>
