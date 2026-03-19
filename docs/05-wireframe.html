@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ワイヤーフレーム -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>ワイヤーフレーム - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
   <button class="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
@@ -38,7 +41,8 @@
           </div>
           <div class="external-link-input">
             <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-05">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-05').value || 'https://docs.google.com', '_blank'); return false;">
+            <a href="#" class="link-btn"
+              onclick="window.open(document.getElementById('external-link-05').value || 'https://docs.google.com', '_blank'); return false;">
               <span class="material-symbols-outlined">open_in_new</span>
               開く
             </a>
@@ -58,125 +62,143 @@
 
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> ワイヤーフレーム作成方法</h2>
+          <div class="fill-block">
+            <div class="fill-label">FREGRANCE index.html をもとにしたワイヤーフレーム記述 <span class="required">必須</span></div>
+            <div class="fill-hint">トップページの目的、ターゲット、各セクションの構成意図を整理した記述</div>
+            <div class="fill-content">
+              <p>ページの目的：来店前のユーザーにサービス内容と体験の流れを短時間で理解してもらい、アンケート開始または予約へ自然に進めること。</p>
+              <p>ターゲット：香りづくりやフレグランスワークショップに興味はあるが、自分に合う香りの選び方が分からず不安を持つ初回訪問者。加えて、内容を把握したうえで直接予約したい再来店者。</p>
+              <p>ページに含めたい要素：ヘッダー、ヒーローセクション、サービス紹介、実績、CTA、フッター</p>
 
-          <div class="info-box info">
-            <strong>作成ツール</strong>
-            Figmaでワイヤーフレームを作成し、スクリーンショットを撮ってこのページに配置してください。<br>
-            画像は <code>../images/wireframe/</code> フォルダに保存してください。
-          </div>
+              <p>ヘッダー</p>
+              <p>・配置する要素：ブランド名、ページ内ナビゲーション、主要CTAボタン、モバイル用メニューボタン</p>
+              <p>・推奨サイズ（相対的な比率）：画面高の約8〜10%。横幅はブランド2、ナビ5、CTA3程度</p>
+              <p>・配置の意図（なぜその位置か）：ページ全体の起点として最上部に置き、閲覧開始直後から「内容理解」と「行動」の両導線を見せるため。ブランド認知と予約導線を同時に担う。</p>
 
-          <div class="prompt-box">
-            <div class="prompt-title">🤖 Figma作業前のAIプロンプト例</div>
-            <div class="prompt-text">（サービス名）のトップページのワイヤーフレームの構成を提案してください。
+              <p>ヒーローセクション</p>
+              <p>・配置する要素：メインビジュアル、サービス名、主見出し、説明文、主CTA、補足ポイント</p>
+              <p>・推奨サイズ（相対的な比率）：ファーストビューの35〜45%。画像5、テキスト5程度の横並び</p>
+              <p>・配置の意図（なぜその位置か）：最初の数秒でサービス価値を伝えるため。画像で世界観を見せ、見出しと説明で内容を理解させ、すぐ下にCTAを置いて次の行動へつなげる。</p>
 
-ページの目的：（目的を記載）
-ターゲット：（ペルソナの情報を記載）
-ページに含めたい要素：ヘッダー、ヒーローセクション、サービス紹介、実績、CTA、フッター
+              <p>サービス紹介</p>
+              <p>・配置する要素：3ステップの流れ、質問ページのプレビュー、体験価値の説明カード</p>
+              <p>・推奨サイズ（相対的な比率）：ページ全体の40〜50%。流れ説明2、画面プレビュー2、価値訴求1の比率</p>
+              <p>・配置の意図（なぜその位置か）：ヒーロー直下で「何をするサービスか」「どのように進むか」を順序立てて理解させるため。判断材料を前半でそろえ、離脱を防ぐ。</p>
 
-各セクションについて以下を教えてください。
-・配置する要素
-・推奨サイズ（相対的な比率）
-・配置の意図（なぜその位置か）</div>
-            <div class="prompt-note">💡 AIの提案を参考にFigmaで実際にワイヤーフレームを作成してください</div>
+              <p>実績</p>
+              <p>・配置する要素：index.html には実績件数や導入事例の明示はないため、代替として安心材料、FAQ、利用イメージを置く</p>
+              <p>・推奨サイズ（相対的な比率）：ページ全体の10〜15%。サービス紹介より小さく、補強要素として配置</p>
+              <p>・配置の意図（なぜその位置か）：価値理解の後に不安を解消するため。先に魅力を伝え、その後で「自分でも進められるか」を補強する順番が自然。</p>
+
+              <p>CTA</p>
+              <p>・配置する要素：アンケート開始ボタン、予約ボタン、必要に応じてトップへ戻るリンク</p>
+              <p>・推奨サイズ（相対的な比率）：各主要セクション末尾に小CTA、ページ終盤に大CTA。最終CTAは横幅の60〜80%程度で強調</p>
+              <p>・配置の意図（なぜその位置か）：理解の段階ごとに複数回行動機会を作るため。読了直後の意思決定点で強いCTAを置くことで、迷いを減らして次のページへ送れる。</p>
+
+              <p>フッター</p>
+              <p>・配置する要素：ページ名や簡易コピーなど最低限の締め情報</p>
+              <p>・推奨サイズ（相対的な比率）：画面高の5〜8%。本文やCTAより控えめ</p>
+              <p>・配置の意図（なぜその位置か）：ページの終端を明確にし、全体を締めるため。主要行動はその直前のCTAで完結させ、フッターは補助情報に留める。</p>
+            </div>
           </div>
         </section>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> トップページ</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">トップページ ワイヤーフレーム（PC版） <span class="required">必須</span></div>
-          <div class="fill-hint">Figmaで作成したワイヤーフレームのスクリーンショットを配置</div>
-          <div class="fill-content">
-            <p>（ここにワイヤーフレーム画像を配置）
-&lt;img src=&quot;../images/wireframe/top-pc.png&quot; alt=&quot;トップページ PC版 ワイヤーフレーム&quot;&gt;</p>
+          <div class="fill-block">
+            <div class="fill-label">トップページ ワイヤーフレーム（PC版） <span class="required">必須</span></div>
+            <div class="fill-hint">Figmaで作成したワイヤーフレームのスクリーンショットを配置</div>
+            <div class="fill-content">
+              <p>（ここにワイヤーフレーム画像を配置）
+                &lt;img src=&quot;../images/wireframe/top-pc.png&quot; alt=&quot;トップページ PC版 ワイヤーフレーム&quot;&gt;</p>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
+              <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
-          </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">配置意図の説明 <span class="required">必須</span></div>
-          <div class="fill-hint">各セクションの配置理由とユーザーへの効果</div>
-          <div class="fill-content">
-            <p>（各セクションの配置意図を記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下のワイヤーフレーム構成について、各セクションの配置意図を説明してください。
+          <div class="fill-block">
+            <div class="fill-label">配置意図の説明 <span class="required">必須</span></div>
+            <div class="fill-hint">各セクションの配置理由とユーザーへの効果</div>
+            <div class="fill-content">
+              <p>（各セクションの配置意図を記載）</p>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
+              <div class="prompt-text">以下のワイヤーフレーム構成について、各セクションの配置意図を説明してください。
 
-（ワイヤーフレームのセクション構成を記載）
+                （ワイヤーフレームのセクション構成を記載）
 
-それぞれ「なぜその位置に配置したか」「ユーザーにどのような効果があるか」を説明してください。</div>
+                それぞれ「なぜその位置に配置したか」「ユーザーにどのような効果があるか」を説明してください。</div>
+            </div>
           </div>
-        </div>
 
         </section>
 
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> 下層ページ</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">下層ページ ワイヤーフレーム <span class="required">必須</span></div>
-          <div class="fill-hint">各下層ページのワイヤーフレームを順に配置</div>
-          <div class="fill-content">
-            <p>（ここに各下層ページのワイヤーフレーム画像と説明を配置）
+          <div class="fill-block">
+            <div class="fill-label">下層ページ ワイヤーフレーム <span class="required">必須</span></div>
+            <div class="fill-hint">各下層ページのワイヤーフレームを順に配置</div>
+            <div class="fill-content">
+              <p>（ここに各下層ページのワイヤーフレーム画像と説明を配置）
 
-【ページ名1】
-&lt;img src=&quot;../images/wireframe/page1-pc.png&quot; alt=&quot;ページ名1 ワイヤーフレーム&quot;&gt;
-配置意図：（説明）
+                【ページ名1】
+                &lt;img src=&quot;../images/wireframe/page1-pc.png&quot; alt=&quot;ページ名1 ワイヤーフレーム&quot;&gt;
+                配置意図：（説明）
 
-【ページ名2】
-&lt;img src=&quot;../images/wireframe/page2-pc.png&quot; alt=&quot;ページ名2 ワイヤーフレーム&quot;&gt;
-配置意図：（説明）</p>
+                【ページ名2】
+                &lt;img src=&quot;../images/wireframe/page2-pc.png&quot; alt=&quot;ページ名2 ワイヤーフレーム&quot;&gt;
+                配置意図：（説明）</p>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
+              <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
-          </div>
-        </div>
 
         </section>
 
         <section class="section" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> Webアプリケーション画面</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">Webアプリ画面 ワイヤーフレーム <span class="required">必須</span></div>
-          <div class="fill-hint">主要な画面（ログイン・一覧・登録・詳細・編集）のワイヤーフレーム</div>
-          <div class="fill-content">
-            <p>（ここにWebアプリ画面のワイヤーフレーム画像を配置）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">Spring Bootの管理画面のワイヤーフレーム構成を提案してください。
+          <div class="fill-block">
+            <div class="fill-label">Webアプリ画面 ワイヤーフレーム <span class="required">必須</span></div>
+            <div class="fill-hint">主要な画面（ログイン・一覧・登録・詳細・編集）のワイヤーフレーム</div>
+            <div class="fill-content">
+              <p>（ここにWebアプリ画面のワイヤーフレーム画像を配置）</p>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
+              <div class="prompt-text">Spring Bootの管理画面のワイヤーフレーム構成を提案してください。
 
-以下の画面それぞれについて、配置する要素を教えてください。
-・ログイン画面
-・一覧画面（検索・ソート・ページネーション付き）
-・新規登録画面（入力フォーム）
-・詳細画面
-・編集画面</div>
+                以下の画面それぞれについて、配置する要素を教えてください。
+                ・ログイン画面
+                ・一覧画面（検索・ソート・ページネーション付き）
+                ・新規登録画面（入力フォーム）
+                ・詳細画面
+                ・編集画面</div>
+            </div>
           </div>
-        </div>
 
         </section>
 
         <section class="section" id="sec5">
           <h2 class="section-title"><span class="section-icon">5</span> スマートフォン版</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">スマートフォン版 ワイヤーフレーム <span class="optional">任意</span></div>
-          <div class="fill-hint">主要ページのスマートフォン版ワイヤーフレーム</div>
-          <div class="fill-content">
-            <p>（ここにスマートフォン版のワイヤーフレーム画像を配置）</p>
+          <div class="fill-block">
+            <div class="fill-label">スマートフォン版 ワイヤーフレーム <span class="optional">任意</span></div>
+            <div class="fill-hint">主要ページのスマートフォン版ワイヤーフレーム</div>
+            <div class="fill-content">
+              <p>（ここにスマートフォン版のワイヤーフレーム画像を配置）</p>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
+              <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
-          </div>
-        </div>
 
         </section>
 
@@ -186,4 +208,5 @@
 
   <script src="../js/main.js"></script>
 </body>
+
 </html>
