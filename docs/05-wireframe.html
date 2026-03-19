@@ -135,21 +135,19 @@
 
           <div class="fill-block">
             <div class="fill-label">下層ページ ワイヤーフレーム <span class="required">必須</span></div>
-            <div class="fill-hint">各下層ページのワイヤーフレームを順に配置</div>
+            <div class="fill-hint">クエスチョンページ、予約ページ、予約完了ページをまとめたワイヤーフレーム</div>
             <div class="fill-content">
-              <p>（ここに各下層ページのワイヤーフレーム画像と説明を配置）
-
-                【ページ名1】
-                &lt;img src=&quot;../images/wireframe/page1-pc.png&quot; alt=&quot;ページ名1 ワイヤーフレーム&quot;&gt;
-                配置意図：（説明）
-
-                【ページ名2】
-                &lt;img src=&quot;../images/wireframe/page2-pc.png&quot; alt=&quot;ページ名2 ワイヤーフレーム&quot;&gt;
-                配置意図：（説明）</p>
+              <p><img src="../images/wireframe/each_page.png" alt="下層ページ ワイヤーフレーム"></p>
             </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">不要（Figmaで作成したスクリーンショットを配置）</div>
+          </div>
+
+          <div class="fill-block">
+            <div class="fill-label">各ページの説明と配置意図 <span class="required">必須</span></div>
+            <div class="fill-hint">各下層ページの役割と、主要要素をその位置に置いた理由を説明</div>
+            <div class="fill-content">
+              <p>クエスチョンページ：ユーザーが直感的に香りの好みを選べるように、質問文を画面の中心に置き、その直下に選択肢カードを並べる構成としている。視線が「質問を読む」「選択肢を見る」「回答する」の順で自然に流れるため、迷いなく回答を進めやすい。補助的なナビゲーションや進行状況は周辺に配置し、主役である質問と選択肢を邪魔しないようにしている。</p>
+              <p>予約ページ：上部で現在の香りバランスや予約内容の要点を確認できるようにし、その下に予約枠選択、来店人数、メモ入力などの入力要素を順序立てて配置している。ユーザーは内容確認のあとに必要事項を埋める流れになるため、入力ミスや認識ずれを減らしやすい。最終的な予約確定ボタンは入力完了後の文脈で押せる位置に置き、行動の区切りを明確にしている。</p>
+              <p>予約完了ページ：最上部に完了メッセージを大きく配置し、予約が受け付けられたことを一目で理解できるようにしている。その下に予約内容の詳細、来店前メモ、次の導線をまとめることで、完了直後にユーザーが確認したい情報へすぐアクセスできる。完了通知を最優先に見せたうえで詳細情報を続けることで、安心感を先に与え、その後の確認行動へスムーズにつなげる構成としている。</p>
             </div>
           </div>
 
