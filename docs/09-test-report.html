@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テスト報告書 -  プロジェクトアーカイブ</title>
+  <title>テスト報告書 - 香りワークショップ</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,169 +13,128 @@
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
         <div class="doc-category">DOCUMENT 09</div>
         <h1 class="doc-title">テスト報告書</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-03-27</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: Codex</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.1</span>
         </div>
       </header>
 
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は 2026-03-26 時点の自動テスト結果と、その時点で残っている未実施確認項目をまとめた報告書です。</div>
         <div class="external-link-box">
           <div class="external-link-box-title">
             <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
+            テスト対象
           </div>
           <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細なテスト報告書は以下のリンクからご確認ください。
+            Spring Boot 側の公開 API と完了画面再取得前提を中心に、自動テスト結果を整理した報告書です。
           </div>
           <div class="external-link-input">
-            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-09">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-09').value || 'https://docs.google.com', '_blank'); return false;">
-              <span class="material-symbols-outlined">open_in_new</span>
-              開く
-            </a>
+            <input type="text" value="FregranceApplicationTests / ReservationApiTests / QuestionnaireApiTests" readonly>
           </div>
         </div>
 
         <div class="toc">
           <div class="toc-title">目次</div>
           <ol class="toc-list">
-            <li><a href="#sec1">テスト計画</a></li>
+            <li><a href="#sec1">テスト方針</a></li>
             <li><a href="#sec2">テストケース一覧</a></li>
             <li><a href="#sec3">テスト結果サマリー</a></li>
-            <li><a href="#sec4">バグ一覧</a></li>
+            <li><a href="#sec4">残課題・リスク</a></li>
             <li><a href="#sec5">ブラウザ・デバイス対応</a></li>
           </ol>
         </div>
 
         <section class="section" id="sec1">
-          <h2 class="section-title"><span class="section-icon">1</span> テスト計画</h2>
-
-        <div class="fill-block">
-          <div class="fill-label">テスト対象・範囲 <span class="required">必須</span></div>
-          <div class="fill-hint">テストの対象となる機能・画面と、テストの種類</div>
-          <div class="fill-content">
-            <p>（テスト計画を記載）</p>
+          <h2 class="section-title"><span class="section-icon">1</span> テスト方針</h2>
+          <div class="fill-block">
+            <div class="fill-label">テスト対象・目的 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <p>テスト対象はヘルスチェック API、予約枠取得 API、予約登録 API、予約完了画面再取得 API、アンケート結果保存 API、アンケート結果再取得 API です。目的は、DB を正とした予約導線が成立すること、完了画面の再取得前提が API レベルで成立すること、主要な異常系を統合テストで担保することです。自動テストは `SpringBootTest` + `TestRestTemplate` + `JdbcTemplate` による統合テスト構成です。</p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（サービス名）のテスト計画を作成してください。
-
-機能一覧：（仕様書で定義した機能を列挙）
-
-以下を含めてください。
-・テスト対象の範囲
-・テスト種別（機能テスト、画面テスト、セキュリティテスト）
-・テスト環境（ブラウザ、OS）
-・テスト期間</div>
-          </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> テストケース一覧</h2>
-
-          <div class="info-box info">
-            <strong>機能ごとにテストケースを作成してください</strong>
-            正常系・異常系・境界値テストを含めてください。結果は実施後に記入してください。
-          </div>
-
           <div class="fill-block">
             <div class="fill-label">テストケース一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>ID</th><th>対象機能</th><th>テスト種別</th><th>テスト内容</th><th>期待結果</th><th>結果</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>TC-001</td><td>（ログイン）</td><td>正常系</td><td>（正しいメール/パスワードでログイン）</td><td>（ダッシュボードに遷移）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-002</td><td>（ログイン）</td><td>異常系</td><td>（パスワード未入力でログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-003</td><td>（ログイン）</td><td>異常系</td><td>（存在しないメールでログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-004</td><td>（新規登録）</td><td>正常系</td><td>（全項目入力して登録）</td><td>（一覧に追加、成功メッセージ）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-005</td><td>（新規登録）</td><td>異常系</td><td>（必須項目未入力で登録）</td><td>（バリデーションエラー表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-006</td><td>（新規登録）</td><td>境界値</td><td>（最大文字数で入力して登録）</td><td>（正常に登録される）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">以下の機能仕様をもとにテストケースを作成してください。
-
-（仕様書の機能詳細を貼り付け）
-
-以下の種別を含めてください。
-・正常系（期待通りの入力で正しく動作する）
-・異常系（不正な入力やエラーケース）
-・境界値（最大文字数、最小値、0件データ等）
-
-テストケースは表形式で出力してください。
-| ID | 対象機能 | テスト種別 | テスト内容 | 期待結果 |</div>
-            </div>
+            <table class="doc-table">
+              <thead><tr><th>ID</th><th>対象</th><th>種別</th><th>内容</th><th>期待結果</th><th>結果</th></tr></thead>
+              <tbody>
+                <tr><td>TC-001</td><td>health</td><td>正常系</td><td>`GET /api/health`</td><td>200 と `ok` を返す</td><td>OK</td></tr>
+                <tr><td>TC-002</td><td>予約枠取得</td><td>正常系</td><td>DB に存在する日時の `GET /api/reservation-slots`</td><td>DB 実データと担当者名を返す</td><td>OK</td></tr>
+                <tr><td>TC-003</td><td>予約枠取得</td><td>正常系</td><td>枠が存在しない日の `GET /api/reservation-slots`</td><td>空配列 `[]` を返す</td><td>OK</td></tr>
+                <tr><td>TC-004</td><td>予約登録</td><td>正常系</td><td>存在する枠への `POST /api/reservations`</td><td>201 と予約レコード作成</td><td>OK</td></tr>
+                <tr><td>TC-005</td><td>予約登録</td><td>正常系</td><td>`questionnaireResultCode` 付きで予約登録</td><td>予約にアンケート結果コードが保存される</td><td>OK</td></tr>
+                <tr><td>TC-006</td><td>予約再取得</td><td>正常系</td><td>`GET /api/reservations/{reservationCode}`</td><td>200 と完了画面用データを返す</td><td>OK</td></tr>
+                <tr><td>TC-007</td><td>予約登録</td><td>異常系</td><td>必須項目欠落で `POST /api/reservations`</td><td>400 `VALIDATION_ERROR` を返す</td><td>OK</td></tr>
+                <tr><td>TC-008</td><td>予約登録</td><td>異常系</td><td>`staffMemo` 文字数超過で `POST /api/reservations`</td><td>400 `VALIDATION_ERROR` を返す</td><td>OK</td></tr>
+                <tr><td>TC-009</td><td>予約登録</td><td>異常系</td><td>存在しない枠で `POST /api/reservations`</td><td>404 `NOT_FOUND` を返す</td><td>OK</td></tr>
+                <tr><td>TC-010</td><td>予約登録</td><td>異常系</td><td>同一枠へ 2 回予約登録</td><td>2 回目は 409 `RESERVATION_CONFLICT` を返す</td><td>OK</td></tr>
+                <tr><td>TC-011</td><td>アンケート結果保存</td><td>正常系</td><td>`POST /api/questionnaire-results`</td><td>201 と DB への保存を確認できる</td><td>OK</td></tr>
+                <tr><td>TC-012</td><td>アンケート結果再取得</td><td>正常系</td><td>`GET /api/questionnaire-results/{resultCode}`</td><td>200 と保存済み payload を返す</td><td>OK</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> テスト結果サマリー</h2>
-
           <div class="fill-block">
             <div class="fill-label">テスト結果サマリー <span class="required">必須</span></div>
-            <div class="fill-hint">テスト実施後に集計結果を記入してください</div>
-        <table class="doc-table">
-          <thead><tr><th>項目</th><th>件数</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>総テストケース数</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>OK</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>NG</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>未実施</td><td>（数値を入力）</td></tr>
-          <tr class="template-row"><td>合格率</td><td>（％を入力）</td></tr>
-          </tbody>
-        </table>
-
+            <table class="doc-table">
+              <thead><tr><th>項目</th><th>件数</th></tr></thead>
+              <tbody>
+                <tr><td>総テストケース数</td><td>12</td></tr>
+                <tr><td>OK</td><td>12</td></tr>
+                <tr><td>NG</td><td>0</td></tr>
+                <tr><td>未実施</td><td>0</td></tr>
+                <tr><td>実行コマンド</td><td>`./mvnw.cmd test`</td></tr>
+                <tr><td>備考</td><td>2026-03-26 時点の自動統合テスト結果。手動ブラウザ総点検と Service / Security テストは別途未実施。</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec4">
-          <h2 class="section-title"><span class="section-icon">4</span> バグ一覧</h2>
-
+          <h2 class="section-title"><span class="section-icon">4</span> 残課題・リスク</h2>
           <div class="fill-block">
-            <div class="fill-label">発見されたバグと対応状況 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>バグID</th><th>発見日</th><th>対象機能</th><th>内容</th><th>重大度</th><th>対応状況</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>BUG-001</td><td>（日付）</td><td>（機能名）</td><td>（バグの内容）</td><td>（高/中/低）</td><td>（修正済/対応中/保留）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-label">残課題・リスク <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>ID</th><th>対象</th><th>内容</th><th>重要度</th><th>状況</th></tr></thead>
+              <tbody>
+                <tr><td>RISK-001</td><td>スタッフ導線</td><td>スタッフログイン、予約一覧、予約詳細は未実装</td><td>中</td><td>未対応</td></tr>
+                <tr><td>RISK-002</td><td>テスト範囲</td><td>Service テスト、Security テスト、手動ブラウザ総点検が未実施</td><td>中</td><td>未対応</td></tr>
+                <tr><td>RISK-003</td><td>完了画面</td><td>アンケート要約表示は見送りであり、内部保存と予約紐付けまでの実装に留まる</td><td>低</td><td>仕様見送り</td></tr>
+                <tr><td>RISK-004</td><td>テンプレート同期</td><td>`reservation-complete.html` はルート直下版と Spring Boot 側で整形差分が残る</td><td>低</td><td>要否判断待ち</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec5">
           <h2 class="section-title"><span class="section-icon">5</span> ブラウザ・デバイス対応</h2>
-
           <div class="fill-block">
-            <div class="fill-label">対応状況 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>ブラウザ/デバイス</th><th>バージョン</th><th>表示</th><th>機能</th><th>備考</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>Chrome（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Firefox（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Edge（PC）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Chrome（スマートフォン）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>Safari（iPhone）</td><td>（バージョン）</td><td>（○/△/×）</td><td>（○/△/×）</td><td>（備考）</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-label">対応確認結果 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>項目</th><th>状況</th><th>備考</th></tr></thead>
+              <tbody>
+                <tr><td>自動テスト実行環境</td><td>OK</td><td>Spring Boot ランダムポート起動で実行</td></tr>
+                <tr><td>主要ブラウザ手動確認</td><td>未完了</td><td>Chrome / Edge / Safari / Firefox の総点検は今後の作業</td></tr>
+                <tr><td>360px / 390px / 中間幅確認</td><td>未完了</td><td>3/25 のヘッダー調整記録に再確認項目あり</td></tr>
+                <tr><td>完了画面の再取得前提</td><td>OK</td><td>API 統合テストで `reservationCode` 再取得成立を確認</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
-
       </div>
     </main>
   </div>

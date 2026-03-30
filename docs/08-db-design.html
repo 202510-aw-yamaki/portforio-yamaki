@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>データベース設計書 -  プロジェクトアーカイブ</title>
+  <title>DB設計書 - 香りワークショップ</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,35 +13,31 @@
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
         <div class="doc-category">DOCUMENT 08</div>
-        <h1 class="doc-title">データベース設計書</h1>
+        <h1 class="doc-title">DB設計書</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-03-27</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: Codex</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.1</span>
         </div>
       </header>
 
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は 2026-03-27 時点の `schema.sql` と `data.sql` をもとに更新した DB 設計書です。アプリ実装上の業務制約も併記しています。</div>
         <div class="external-link-box">
           <div class="external-link-box-title">
             <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
+            関連メモ
           </div>
           <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細なDB設計書は以下のリンクからご確認ください。
+            予約保存、アンケート結果保存、完了画面再取得のための現行スキーマです。
           </div>
           <div class="external-link-input">
-            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-08">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-08').value || 'https://docs.google.com', '_blank'); return false;">
-              <span class="material-symbols-outlined">open_in_new</span>
-              開く
-            </a>
+            <input type="text" value="schema.sql / data.sql / ReservationService / QuestionnaireResultService" readonly>
           </div>
         </div>
 
@@ -49,7 +45,7 @@
           <div class="toc-title">目次</div>
           <ol class="toc-list">
             <li><a href="#sec1">ER図</a></li>
-            <li><a href="#sec2">テーブル定義</a></li>
+            <li><a href="#sec2">テーブル詳細</a></li>
             <li><a href="#sec3">インデックス設計</a></li>
             <li><a href="#sec4">初期データ</a></li>
           </ol>
@@ -57,124 +53,150 @@
 
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> ER図</h2>
+          <div class="fill-block">
+            <div class="fill-label">ER図 <span class="required">必須</span></div>
+            <div class="fill-content">
+<pre>[visit_types] 1 ----- * [reservations] * ----- 1 [reservation_slots]
+ id (PK)                 id (PK)                 id (PK)
+ code (UNIQUE)           reservation_code        slot_date
+ name                    reservation_slot_id FK  slot_time
+ description             visit_type_id FK        status
+                         visit_type_label        instructor_name
+                         guest_count             created_at
+                         staff_memo              updated_at
+                         summary_headline
+                         questionnaire_result_code
+                         slot_label
+                         created_at
+                         updated_at
 
-        <div class="fill-block">
-          <div class="fill-label">ER図 <span class="required">必須</span></div>
-          <div class="fill-hint">テーブル間のリレーション図（テキストベースまたは画像で記載）</div>
-          <div class="fill-content">
-            <p>（ER図を記載）</p>
+[questionnaire_results]
+ id (PK)
+ result_code (UNIQUE)
+ route_code
+ step1_answers_json
+ step2_answers_json
+ graph_axes_json
+ created_at
+ updated_at
+
+論理関係:
+questionnaire_results.result_code ---- reservations.questionnaire_result_code
+※ 現行は外部キー制約ではなく、アプリケーション側で紐付ける。</pre>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下の機能要件からER図を作成してください。
-
-システム概要：（概要を記載）
-主な機能：（機能一覧を記載）
-
-テキストベースのER図を出力してください。
-各テーブルの主要カラムとリレーション（1対多、多対多）を明記してください。
-
-例：
-[users] 1 ──── * [items]
-  id (PK)          id (PK)
-  name             title
-  email            user_id (FK)
-  password         ...</div>
-          </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec2">
-          <h2 class="section-title"><span class="section-icon">2</span> テーブル定義</h2>
+          <h2 class="section-title"><span class="section-icon">2</span> テーブル詳細</h2>
 
-          <div class="info-box info">
-            <strong>テーブルごとに定義表を作成してください</strong>
-            以下のテンプレートをテーブルの数だけコピーして使用してください。
+          <div class="fill-block">
+            <div class="fill-label">visit_types テーブル <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>PK</td><td>来店種別ID</td></tr>
+                <tr><td>code</td><td>VARCHAR(32)</td><td>NO</td><td>UNIQUE</td><td>内部コード</td></tr>
+                <tr><td>name</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>表示名</td></tr>
+                <tr><td>description</td><td>VARCHAR(255)</td><td>YES</td><td>-</td><td>説明</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="fill-block">
-            <div class="fill-label">テーブル名：（テーブル名を入力） <span class="required">必須</span></div>
-            <div class="fill-hint">テーブルの目的：（このテーブルが管理するデータの説明）</div>
-        <table class="doc-table">
-          <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
-          <tr class="template-row"><td>（カラム名）</td><td>（VARCHAR(255) 等）</td><td>（YES/NO）</td><td>（デフォルト値）</td><td>（PK/FK/UNIQUE/NOT NULL）</td><td>（説明）</td></tr>
-          <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
-          <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>更新日時</td></tr>
-          </tbody>
-        </table>
+            <div class="fill-label">reservation_slots テーブル <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>PK</td><td>予約枠ID</td></tr>
+                <tr><td>slot_date</td><td>DATE</td><td>NO</td><td>UNIQUE構成要素</td><td>営業日</td></tr>
+                <tr><td>slot_time</td><td>TIME</td><td>NO</td><td>UNIQUE構成要素</td><td>開始時刻</td></tr>
+                <tr><td>status</td><td>VARCHAR(32)</td><td>NO</td><td>-</td><td>`recommended` / `open` / `reserved` を想定</td></tr>
+                <tr><td>instructor_name</td><td>VARCHAR(100)</td><td>YES</td><td>-</td><td>担当者名</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">以下のER図をもとに、各テーブルのテーブル定義書を作成してください。
+          <div class="fill-block">
+            <div class="fill-label">reservations テーブル <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>PK</td><td>予約ID</td></tr>
+                <tr><td>reservation_code</td><td>VARCHAR(32)</td><td>NO</td><td>UNIQUE</td><td>完了画面再取得に使う予約コード</td></tr>
+                <tr><td>reservation_slot_id</td><td>BIGINT</td><td>NO</td><td>FK</td><td>予約枠ID</td></tr>
+                <tr><td>visit_type_id</td><td>BIGINT</td><td>NO</td><td>FK</td><td>来店種別ID</td></tr>
+                <tr><td>visit_type_label</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>完了画面表示用ラベル</td></tr>
+                <tr><td>guest_count</td><td>INT</td><td>NO</td><td>-</td><td>来店人数</td></tr>
+                <tr><td>staff_memo</td><td>TEXT</td><td>YES</td><td>-</td><td>スタッフ向けメモ</td></tr>
+                <tr><td>summary_headline</td><td>VARCHAR(255)</td><td>YES</td><td>-</td><td>予約画面の要約見出し</td></tr>
+                <tr><td>questionnaire_result_code</td><td>VARCHAR(32)</td><td>YES</td><td>論理参照</td><td>アンケート結果コード</td></tr>
+                <tr><td>slot_label</td><td>VARCHAR(255)</td><td>YES</td><td>-</td><td>画面表示用予約枠ラベル</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-（ER図を貼り付け）
-
-各テーブルについて以下の情報を表形式で出力してください。
-| カラム名 | データ型 | NULL許可 | デフォルト値 | 制約 | 説明 |
-
-以下の要件も考慮してください。
-・全テーブルに created_at, updated_at を含める
-・パスワードは十分な長さ（VARCHAR(255)）にする
-・外部キー制約を明記する
-・論理削除が必要なテーブルは deleted_at カラムを追加する</div>
-            </div>
+          <div class="fill-block">
+            <div class="fill-label">questionnaire_results テーブル <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td>BIGINT</td><td>NO</td><td>PK</td><td>回答結果ID</td></tr>
+                <tr><td>result_code</td><td>VARCHAR(32)</td><td>NO</td><td>UNIQUE</td><td>再取得用結果コード</td></tr>
+                <tr><td>route_code</td><td>VARCHAR(32)</td><td>YES</td><td>-</td><td>Bloom / Air / Deep / Exploratory などの分岐コード</td></tr>
+                <tr><td>step1_answers_json</td><td>JSON</td><td>YES</td><td>-</td><td>STEP1回答</td></tr>
+                <tr><td>step2_answers_json</td><td>JSON</td><td>YES</td><td>-</td><td>STEP2回答</td></tr>
+                <tr><td>graph_axes_json</td><td>JSON</td><td>YES</td><td>-</td><td>5軸グラフ値</td></tr>
+                <tr><td>created_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>作成日時</td></tr>
+                <tr><td>updated_at</td><td>DATETIME</td><td>NO</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> インデックス設計</h2>
-
           <div class="fill-block">
             <div class="fill-label">インデックス一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>テーブル名</th><th>インデックス名</th><th>対象カラム</th><th>種類</th><th>設定理由</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>（テーブル名）</td><td>idx_（テーブル）_（カラム）</td><td>（カラム名）</td><td>（UNIQUE / INDEX）</td><td>（検索で頻繁に使用するため等）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">上記のテーブル定義をもとに、必要なインデックスを提案してください。
-
-以下の観点で検討してください。
-・検索条件で頻繁に使われるカラム
-・外部キーカラム
-・ユニーク制約が必要なカラム
-・ソートに使われるカラム</div>
-            </div>
+            <table class="doc-table">
+              <thead><tr><th>テーブル名</th><th>インデックス / 制約名</th><th>対象カラム</th><th>種類</th><th>設計理由</th></tr></thead>
+              <tbody>
+                <tr><td>visit_types</td><td>UNIQUE(code)</td><td>code</td><td>UNIQUE</td><td>来店種別コードの重複防止</td></tr>
+                <tr><td>reservation_slots</td><td>uq_reservation_slots_date_time</td><td>slot_date, slot_time</td><td>UNIQUE</td><td>同一日時の重複枠作成防止</td></tr>
+                <tr><td>reservations</td><td>UNIQUE(reservation_code)</td><td>reservation_code</td><td>UNIQUE</td><td>完了画面再取得に使うコードの一意性確保</td></tr>
+                <tr><td>questionnaire_results</td><td>UNIQUE(result_code)</td><td>result_code</td><td>UNIQUE</td><td>アンケート結果再取得コードの一意性確保</td></tr>
+              </tbody>
+            </table>
+            <p>補足: 「1日時点につき1件で受付終了」は現在アプリケーション側の重複予約防止と `reservation_slots.status=reserved` 更新で担保している。`reservations.reservation_slot_id` には現時点で DB 側の UNIQUE 制約は置いていない。</p>
           </div>
         </section>
 
         <section class="section" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> 初期データ</h2>
+          <div class="fill-block">
+            <div class="fill-label">マスタデータ・初期データ <span class="required">必須</span></div>
+            <div class="fill-content">
+<pre>visit_types:
+- workshop / 初回ワークショップ / 初回来店の香りづくり体験
+- followup / 再来店相談 / 再来店時の調整・相談向け
+- gift / ギフト相談 / ギフト用途の香り相談
 
-        <div class="fill-block">
-          <div class="fill-label">マスタデータ・テストデータ <span class="required">必須</span></div>
-          <div class="fill-hint">初期投入するデータ（カテゴリマスタ、管理者ユーザー等）</div>
-          <div class="fill-content">
-            <p>（初期データのSQL INSERT文を記載）</p>
+reservation_slots:
+- CURDATE() の翌日から 14 日分
+- 1日あたり 3 枠
+  - 10:30 recommended Haraguchi
+  - 13:00 open Shimizu
+  - 15:30 open Otsuka
+- 既存同日時枠がある場合は INSERT しない</pre>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">上記のテーブル定義をもとに、初期データのINSERT文を作成してください。
-
-以下のデータを含めてください。
-・管理者ユーザー（1件）
-・テスト用一般ユーザー（2件）
-・カテゴリマスタ（5件程度）
-・テスト用のサンプルデータ（5件程度）
-
-パスワードはBCryptハッシュ化済みの値にしてください。</div>
-          </div>
-        </div>
-
         </section>
-
       </div>
     </main>
   </div>

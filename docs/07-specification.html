@@ -1,47 +1,86 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>仕様書（機能仕様書） -  プロジェクトアーカイブ</title>
+  <title>香りワークショップ - 仕様書</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body data-course="generaltraining" data-type="section" data-page="07-specification-answer">
+  <style>
+    #lms-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+      height: 40px;
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+    }
+
+    body {
+      padding-top: 100px !important;
+    }
+
+    .spec-note-list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .spec-note-list li + li {
+      margin-top: 6px;
+    }
+  </style>
+
+  <div id="lms-topbar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="color:#fff;font-weight:700;font-size:12px;letter-spacing:.5px">Proclimb LMS</span>
+      <span style="color:#8bb4e0;font-size:12px;padding:4px 10px;border:1px solid rgba(139,180,224,.3);border-radius:6px">DOCUMENT VIEW</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:24px;height:24px;border-radius:50%;background:#4a5568;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">FR</div>
+      <span style="color:#ccc;font-size:12px">Fragrance Workshop</span>
+    </div>
+  </div>
+
   <button class="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
         <div class="doc-category">DOCUMENT 07</div>
-        <h1 class="doc-title">仕様書（機能仕様書）</h1>
+        <h1 class="doc-title">香りワークショップ 仕様書</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-03-27</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: Codex</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.1</span>
         </div>
       </header>
 
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は 2026-03-27 時点の実装状況に合わせて更新した仕様書です。最新の実装前提は `作業md/2026-03-26_1048_バックエンド実態確認と実装プラン.md` と `作業md/2026-03-26_1246_午後引継ぎ.md` を基準とします。</div>
         <div class="external-link-box">
           <div class="external-link-box-title">
             <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
+            関連ドキュメント
           </div>
           <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細な仕様書は以下のリンクからご確認ください。
+            現行の Spring Boot 実装と画面導線をもとに更新した仕様書です。
           </div>
           <div class="external-link-input">
-            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-07">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-07').value || 'https://docs.google.com', '_blank'); return false;">
-              <span class="material-symbols-outlined">open_in_new</span>
-              開く
-            </a>
+            <input type="text" value="/ /questionnaire /questionnaire/step2 /graph /reservation /reservation/complete /api/reservation-slots /api/reservations /api/questionnaire-results" readonly>
           </div>
         </div>
 
@@ -50,199 +89,135 @@
           <ol class="toc-list">
             <li><a href="#sec1">システム概要</a></li>
             <li><a href="#sec2">機能一覧</a></li>
-            <li><a href="#sec3">画面遷移図</a></li>
-            <li><a href="#sec4">機能詳細仕様</a></li>
-            <li><a href="#sec5">非機能要件</a></li>
+            <li><a href="#sec3">画面遷移</a></li>
+            <li><a href="#sec4">詳細仕様</a></li>
+            <li><a href="#sec5">セキュリティ・非機能</a></li>
           </ol>
         </div>
 
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> システム概要</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">システムの目的 <span class="required">必須</span></div>
-          <div class="fill-hint">このシステムが解決する課題と提供する価値</div>
-          <div class="fill-content">
-            <p>（システムの目的を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">システムの目的 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <p>本システムは、来店前のユーザーに対して「診断」ではなく「香りづくりの準備体験」を提供するフレグランスワークショップ導線です。トップページで体験価値を伝え、アンケートで好みの傾向を取得し、5軸グラフで微調整したうえで予約へ接続することで、来店前から香りづくりを始められる状態をつくります。最終的な香りは店頭でスタッフと一緒に仕上げる前提を保ちつつ、スタッフが事前に把握できる情報を整理することも目的としています。</p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（サービス名）の管理システムの目的を100字程度で記述してください。
 
-以下の情報を含めてください。
-・誰が使うシステムか
-・何ができるシステムか
-・どのような価値を提供するか</div>
+          <div class="fill-block">
+            <div class="fill-label">システム構成 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <ul class="spec-note-list">
+                <li>フロントエンドは HTML / CSS / JavaScript、バックエンドは Spring Boot / Thymeleaf / MyBatis / MySQL で構成</li>
+                <li>公開画面は `/`、`/questionnaire`、`/questionnaire/step2`、`/graph`、`/reservation`、`/reservation/complete` で構成</li>
+                <li>API は `/api/health`、`/api/reservation-slots`、`/api/reservations`、`/api/questionnaire-results` を提供する</li>
+                <li>STEP1 / STEP2 の一時保持は `sessionStorage` を併用しつつ、graph 以降は API 保存と DB 永続化を行う</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">システム構成図 <span class="required">必須</span></div>
-          <div class="fill-hint">フロントエンド ↔ バックエンド ↔ データベースの関係を図示</div>
-          <div class="fill-content">
-            <p>（システム構成図を記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下のシステム構成をテキストベースの図で表現してください。
-
-・フロントエンド：HTML/CSS/JavaScript（Thymeleaf）
-・バックエンド：Spring Boot（Controller → Service → Repository）
-・データベース：（MySQL / H2）
-
-ブラウザからDBまでのデータの流れがわかる図にしてください。</div>
-          </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> 機能一覧</h2>
-
           <div class="fill-block">
-            <div class="fill-label">機能一覧表 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>No.</th><th>機能名</th><th>概要</th><th>対応画面</th><th>優先度</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>F-001</td><td>（ログイン）</td><td>（メール/パスワードで認証）</td><td>（ログイン画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-002</td><td>（一覧表示）</td><td>（データの一覧表示・ページネーション）</td><td>（一覧画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-003</td><td>（新規登録）</td><td>（フォームから新規データ登録）</td><td>（登録画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-004</td><td>（詳細表示）</td><td>（データの詳細情報表示）</td><td>（詳細画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-005</td><td>（編集）</td><td>（既存データの更新）</td><td>（編集画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-006</td><td>（削除）</td><td>（データの削除・確認ダイアログ）</td><td>（一覧画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-007</td><td>（検索）</td><td>（キーワード・条件検索）</td><td>（一覧画面）</td><td><span class="badge badge-should">Should</span></td></tr>
-          <tr class="template-row"><td>F-008</td><td>（ソート）</td><td>（カラムクリックでの並び替え）</td><td>（一覧画面）</td><td><span class="badge badge-should">Should</span></td></tr>
-          <tr class="template-row"><td>F-009</td><td>（CSV出力）</td><td>（データのCSVエクスポート）</td><td>（一覧画面）</td><td><span class="badge badge-could">Could</span></td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">（サービス名）の管理システムの機能一覧を作成してください。
-
-システム概要：（概要を記載）
-ユーザー種別：管理者、一般ユーザー
-
-以下の形式で、MoSCoW法で優先度をつけてリストアップしてください。
-| No. | 機能名 | 概要 | 対応画面 | 優先度(Must/Should/Could) |
-
-Must: CRUD基本操作、ログイン、バリデーション
-Should: 検索、ソート、ページネーション
-Could: CSV出力、ファイルアップロード、メール通知</div>
-            </div>
+            <div class="fill-label">機能一覧 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead>
+                <tr><th>No.</th><th>機能名</th><th>目的</th><th>対象画面 / API</th><th>優先度</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>F-001</td><td>トップページ表示</td><td>価値と流れを伝え、アンケート開始または予約へ誘導する</td><td>トップページ</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-002</td><td>STEP1アンケート</td><td>共通5問で香りのベース傾向を取得する</td><td>アンケートSTEP1</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-003</td><td>STEP2分岐アンケート</td><td>追加質問で好みの輪郭を補強する</td><td>アンケートSTEP2</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-004</td><td>香りグラフ表示・微調整</td><td>5軸で可視化し、ユーザー自身で微調整できるようにする</td><td>香りグラフ</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-005</td><td>アンケート結果保存</td><td>graph 画面以降で再取得可能な状態にする</td><td>`POST /api/questionnaire-results`</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-006</td><td>予約枠取得</td><td>日付別の予約枠を DB から返す</td><td>`GET /api/reservation-slots`</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-007</td><td>予約登録</td><td>来店種別、人数、メモを含めて予約を保存する</td><td>`POST /api/reservations`</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-008</td><td>予約完了再取得</td><td>`reservationCode` により完了画面を再構築する</td><td>`GET /api/reservations/{reservationCode}`</td><td><span class="badge badge-must">Must</span></td></tr>
+                <tr><td>F-009</td><td>事前情報引き継ぎ</td><td>アンケート結果と予約情報を内部的に紐付ける</td><td>graph / reservation / reservation-complete</td><td><span class="badge badge-should">Should</span></td></tr>
+                <tr><td>F-010</td><td>スタッフ向け管理導線</td><td>予約一覧・詳細・ログインを提供する</td><td>未実装</td><td><span class="badge badge-could">Could</span></td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec3">
-          <h2 class="section-title"><span class="section-icon">3</span> 画面遷移図</h2>
-
-        <div class="fill-block">
-          <div class="fill-label">画面遷移図 <span class="required">必須</span></div>
-          <div class="fill-hint">各画面間の遷移関係を図示</div>
-          <div class="fill-content">
-            <p>（画面遷移図を記載）</p>
+          <h2 class="section-title"><span class="section-icon">3</span> 画面遷移</h2>
+          <div class="fill-block">
+            <div class="fill-label">画面遷移一覧 <span class="required">必須</span></div>
+            <table class="doc-table">
+              <thead><tr><th>画面</th><th>遷移先</th><th>目的</th></tr></thead>
+              <tbody>
+                <tr><td>`index.html`</td><td>`questionnaire.html` / `reservation.html`</td><td>体験価値を伝え、アンケート開始または直接予約へ誘導する</td></tr>
+                <tr><td>`questionnaire.html`</td><td>`questionnaire_step2.html` / `index.html`</td><td>共通5問でベース傾向を取得する</td></tr>
+                <tr><td>`questionnaire_step2.html`</td><td>`fragrance-graph.html` / `questionnaire.html` / `index.html`</td><td>ルート別の深掘り質問を行う</td></tr>
+                <tr><td>`fragrance-graph.html`</td><td>`reservation.html?resultCode=...` / `index.html`</td><td>アンケート結果保存後に予約画面へ接続する</td></tr>
+                <tr><td>`reservation.html`</td><td>`reservation-complete.html?reservationCode=...`</td><td>予約を保存し、完了画面再取得前提の URL を生成する</td></tr>
+                <tr><td>`reservation-complete.html`</td><td>`index.html`</td><td>予約内容を再表示し、来店前案内とトップ戻り導線を提供する</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（サービス名）の管理システムの画面遷移図をテキストベースで作成してください。
-
-画面一覧：
-（上記の機能一覧で定義した画面を列挙）
-
-各画面間の遷移を矢印で表現し、遷移のトリガー（ボタン名やアクション）も記載してください。</div>
-          </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec4">
-          <h2 class="section-title"><span class="section-icon">4</span> 機能詳細仕様</h2>
+          <h2 class="section-title"><span class="section-icon">4</span> 詳細仕様</h2>
 
-          <div class="info-box warning">
-            <strong>機能ごとに詳細仕様を記載してください</strong>
-            以下のテンプレートを機能の数だけコピーして使用してください。<br>
-            最低でもCRUD（登録・一覧・更新・削除）とログイン機能の仕様は記載してください。
+          <div class="subsection">
+            <h3 class="subsection-title">トップページ</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>ワークショップ概要、基本情報、安心材料、予約導線を提示し、初回ユーザーにも再来店ユーザーにも自然に次画面へ進ませる。</p></div></div>
           </div>
 
           <div class="subsection">
-            <h3 class="subsection-title">機能仕様テンプレート（コピーして使用）</h3>
-
-        <div class="fill-block">
-          <div class="fill-label">機能名：（機能名を入力） <span class="required">必須</span></div>
-          <div class="fill-hint">機能ID：F-XXX</div>
-          <div class="fill-content">
-            <p>（機能の詳細仕様を記載）</p>
+            <h3 class="subsection-title">STEP1アンケート</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>5問でベース傾向を取得し、回答は `fragranceStep1Answers` として保持する。</p></div></div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（サービス名）の（機能名）機能の詳細仕様を作成してください。
 
-以下の項目を含めてください。
-1. 画面レイアウト（どの要素がどこに配置されるか）
-2. 入力項目一覧（項目名・データ型・必須/任意・バリデーションルール）
-3. 処理フロー（ユーザー操作 → システム処理 → 結果表示）
-4. 正常時の動作
-5. エラー時の動作（バリデーションエラー、システムエラー）
-6. 画面遷移先</div>
+          <div class="subsection">
+            <h3 class="subsection-title">STEP2アンケート</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>STEP1 の回答傾向に応じて追加質問を出し、`routeCode` と STEP2 回答を保持する。</p></div></div>
           </div>
-        </div>
 
-            <div class="fill-block">
-              <div class="fill-label">入力項目一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>項目名</th><th>データ型</th><th>必須</th><th>バリデーション</th><th>備考</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>（項目名）</td><td>（String / Integer / Date 等）</td><td>（○ / —）</td><td>（必須チェック / 文字数制限 等）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
+          <div class="subsection">
+            <h3 class="subsection-title">香りグラフページ</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>5軸グラフとスライダーで最終調整を行い、`questionnaire-results` 保存 API を呼び出して `resultCode` を発行する。</p></div></div>
+          </div>
 
-            </div>
+          <div class="subsection">
+            <h3 class="subsection-title">予約ページ</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>予約枠 API で日付別予約枠を取得し、来店種別、人数、スタッフ向けメモ、`questionnaireResultCode` を含めて予約登録 API へ送信する。`resultCode` がある場合はアンケート結果 API を優先再取得し、失敗時のみ `sessionStorage` をフォールバックする。</p></div></div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">予約完了ページ</h3>
+            <div class="fill-block"><div class="fill-label">画面の目的 <span class="required">必須</span></div><div class="fill-content"><p>`reservationCode` がある場合に予約 API から内容を再取得し、予約日時、来店種別、人数、メモを再表示する。アンケート要約表示は見送り中である。</p></div></div>
           </div>
         </section>
 
         <section class="section" id="sec5">
-          <h2 class="section-title"><span class="section-icon">5</span> 非機能要件</h2>
+          <h2 class="section-title"><span class="section-icon">5</span> セキュリティ・非機能</h2>
+          <div class="fill-block">
+            <div class="fill-label">セキュリティ観点 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <ul class="spec-note-list">
+                <li>公開画面と公開 API は `permitAll`、それ以外は認証必須の Spring Security 構成で動作する</li>
+                <li>予約 API はバリデーション、404、409、400 を JSON エラー応答で返す</li>
+                <li>CSRF は現状無効化しており、スタッフ画面実装時に認可設計と合わせて見直しが必要</li>
+                <li>自由記述メモを保存するため、XSS 対策、サニタイズ、ログ出力制御は継続課題である</li>
+              </ul>
+            </div>
+          </div>
 
-        <div class="fill-block">
-          <div class="fill-label">セキュリティ要件 <span class="required">必須</span></div>
-          <div class="fill-hint">認証・認可・データ保護に関する要件</div>
-          <div class="fill-content">
-            <p>（セキュリティ要件を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">対応環境 <span class="required">必須</span></div>
+            <div class="fill-content">
+              <p>PC / スマートフォン向けレスポンシブ対応を前提とし、Chrome / Edge / Safari / Firefox の最新版系ブラウザを想定する。手動ブラウザ総点検は継続課題として残っている。</p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">Spring Bootアプリケーションのセキュリティ要件を一覧にしてください。
-
-以下を含めてください。
-・認証方式（Spring Security）
-・パスワードの暗号化方式
-・CSRF対策
-・XSS対策
-・SQLインジェクション対策
-・セッション管理</div>
-          </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">対応環境 <span class="required">必須</span></div>
-          <div class="fill-hint">対応ブラウザ・デバイス</div>
-          <div class="fill-content">
-            <p>・対応ブラウザ：Chrome（最新版）/ Firefox（最新版）/ Edge（最新版）
-・対応デバイス：PC / タブレット / スマートフォン
-（自分の実際の対応範囲に合わせて編集してください）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">不要（以下を参考に自分で記載してください）</div>
-          </div>
-        </div>
-
         </section>
-
       </div>
     </main>
   </div>
-
   <script src="../js/main.js"></script>
 </body>
 </html>
