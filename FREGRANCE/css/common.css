@@ -9,7 +9,7 @@
 
 .page-canvas {
   margin: 0;
-  min-width: 375px;
+  min-width: 360px;
   min-height: 100vh;
   color: var(--text);
   line-height: 1.7;
@@ -35,11 +35,24 @@
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   font-weight: 800;
   letter-spacing: 0.05em;
   white-space: nowrap;
   color: inherit;
+}
+
+.brand picture {
+  display: block;
+}
+
+.brand img {
+  width: auto;
+  height: auto;
+  max-height: 48px;
+  max-width: 100%;
 }
 
 .header-inner {
@@ -56,18 +69,32 @@
   .page-header-inner {
     min-height: auto;
     padding: 10px 0;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     position: relative;
+  }
+
+  .header-top {
+    flex: 0 0 auto;
+    min-width: 0;
   }
 
   .brand {
     font-size: .95rem;
+    min-width: 0;
   }
 
-  .page-header-inner > .main-nav,
-  .page-header-inner > .header-actions,
+  .page-header-inner > .main-nav {
+    width: 100%;
+  }
+
+  .page-header-inner > .header-actions {
+    width: auto;
+    min-width: 0;
+    margin-left: auto;
+  }
+
   .page-header-inner > .header-cta {
     width: 100%;
   }

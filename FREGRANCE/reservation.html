@@ -15,7 +15,12 @@
 <body class="page-canvas">
   <header class="site-header">
     <div class="header-inner page-header-inner site-container">
-      <a class="brand" href="index.html" aria-label="トップへ戻る">FRAGRANCE WORKSHOP</a>
+      <a class="brand" href="index.html" aria-label="トップへ戻る">
+        <picture>
+          <source media="(max-width: 47.9375em)" srcset="img/TOP/吟ロゴ.png">
+          <img src="img/TOP/roherarogo.png" alt="FRAGRANCE WORKSHOP">
+        </picture>
+      </a>
       <button class="action-btn primary header-cta" id="confirm-btn" type="button" disabled>予約を確定する</button>
     </div>
   </header>
@@ -516,14 +521,23 @@ function getFocusableElements(container) {
     }
 
     function updateSelectionState() {
+      const hasSelectedSlot = !!selectedSlot;
       const hasGuestCount = guestCount.value !== "";
-      if (selectedSlot && hasGuestCount) {
+
+      if (hasSelectedSlot && hasGuestCount) {
         selectedStatus.textContent = `選択中: ${selectedSlot.slotLabel} / ${guestCount.value}`;
         confirmBtn.disabled = false;
-      } else {
-        selectedStatus.textContent = "未選択: 来店日時を選んでください";
-        confirmBtn.disabled = true;
+        return;
       }
+
+      if (hasSelectedSlot) {
+        selectedStatus.textContent = `選択中: ${selectedSlot.slotLabel} / 人数を選択してください`;
+        confirmBtn.disabled = true;
+        return;
+      }
+
+      selectedStatus.textContent = "未選択: 来店日時を選んでください";
+      confirmBtn.disabled = true;
     }
 
     function maybeScrollToMemo() {

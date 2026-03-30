@@ -16,16 +16,39 @@
 <body class="page-canvas">
   <header class="site-header">
     <div class="header-inner page-header-inner site-container">
-      <a class="brand" href="index.html" aria-label="トップへ戻る">FRAGRANCE WORKSHOP</a>
+      <a class="brand" href="index.html" aria-label="トップへ戻る">
+        <picture>
+          <source media="(max-width: 47.9375em)" srcset="img/TOP/吟ロゴ.png">
+          <img src="img/TOP/roherarogo.png" alt="FRAGRANCE WORKSHOP">
+        </picture>
+      </a>
     </div>
   </header>
 
   <main class="complete-shell page-main site-container">
     <div class="complete-layout">
       <article class="hero-card glass-panel" aria-labelledby="complete-title">
-        <div class="eyebrow">Reservation Complete</div>
-        <h1 id="complete-title">予約が完了しました</h1>
-        <p>ご予約内容を受け付けました。当日はこの内容をもとにスタッフがご案内します。香りの細かな調整は店頭で一緒に進められます。</p>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <div class="eyebrow">Reservation Complete</div>
+            <h1 id="complete-title">予約が完了しました。<br>当日は店舗へ直接ご来店ください。</h1>
+            <p>ご予約内容を受け付けました。当日はこの内容をもとにスタッフがご案内します。香りの細かな調整は店頭で一緒に進められます。</p>
+          </div>
+          <aside class="hero-map-card" aria-label="店舗地図への導線">
+            <p class="hero-map-label">開催場所</p>
+            <p class="hero-map-address">東京都台東区東上野3-15-5 曽我ビル3F</p>
+            <div class="hero-map-actions">
+              <figure class="hero-map-qr-wrap">
+                <img class="hero-map-qr" src="img/TOP/グーグルマップ地図上野教室.png" alt="店舗地図を開くQRコード">
+                <figcaption>PCではスマホで読み取り、地図を開けます。</figcaption>
+              </figure>
+              <div class="hero-map-links">
+                <a class="btn btn-primary hero-map-link" href="index.html#information-map">トップページの地図へ</a>
+                <a class="btn btn-secondary hero-map-link" id="hero-map-link" href="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E6%9D%B1%E4%B8%8A%E9%87%8E3-15-5%20%E6%9B%BD%E6%88%91%E3%83%93%E3%83%AB3F" target="_blank" rel="noopener">Googleマップを開く</a>
+              </div>
+            </div>
+          </aside>
+        </div>
       </article>
 
 
@@ -38,7 +61,8 @@
           <h2 class="visually-hidden" id="detail-heading">予約情報</h2>
           <div class="detail-summary">
             <div class="status-strip status-pill" id="detail-status-label">現在の予約内容</div>
-            <button class="detail-toggle" id="detail-toggle" type="button" aria-expanded="true" aria-controls="detail-body" aria-label="予約内容を開閉する">開く</button>
+            <button class="detail-toggle" id="detail-toggle" type="button" aria-expanded="true"
+              aria-controls="detail-body" aria-label="予約内容を開閉する">開く</button>
           </div>
           <div class="detail-body" id="detail-body">
             <div class="detail-grid">
@@ -99,7 +123,7 @@
     </div>
   </main>
 
-    <script>
+  <script>
     const STORAGE_KEY = "fragranceReservationConfirmation";
     const TOP_PAGE_URL = "index.html";
     const countdownEl = document.getElementById("countdown-seconds");
@@ -232,4 +256,3 @@
 </body>
 
 </html>
-
