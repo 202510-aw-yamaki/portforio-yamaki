@@ -1,477 +1,334 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>クラス構成図 -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>クラス図 - 香りワークショップ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-  <button class="hamburger" aria-label="メニュー">
-    <span></span><span></span><span></span>
-  </button>
-
+  <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="design"></aside>
-
+    <aside class="sidebar" data-nav-level="design"></aside>
     <main class="main-content">
       <header class="doc-header">
-        <div class="doc-category">DESIGN DOCUMENT</div>
-        <h1 class="doc-title">クラス構成図</h1>
+        <div class="doc-category">DESIGN 04</div>
+        <h1 class="doc-title">クラス図</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-04-06</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: 山木秀治</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.3</span>
         </div>
       </header>
-
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は 2026-04-06 時点の <code>com.fregrance.app</code>
+          実装を基準に更新しています。設計検討時の仮クラス名ではなく、現行の Controller / Service / Mapper / Model / DTO / Form / Security
+          構成に合わせて記載しています。</div>
         <div class="toc">
           <div class="toc-title">目次</div>
           <ol class="toc-list">
             <li><a href="#sec1">パッケージ構成</a></li>
-            <li><a href="#sec2">Entity（エンティティ）</a></li>
-            <li><a href="#sec3">Repository（リポジトリ）</a></li>
-            <li><a href="#sec4">Service（サービス）</a></li>
-            <li><a href="#sec5">Controller（コントローラー）</a></li>
+            <li><a href="#sec2">Model / DTO</a></li>
+            <li><a href="#sec3">Mapper</a></li>
+            <li><a href="#sec4">Service</a></li>
+            <li><a href="#sec5">Controller</a></li>
             <li><a href="#sec6">クラス間の依存関係</a></li>
           </ol>
         </div>
 
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> パッケージ構成</h2>
-
           <div class="fill-block">
             <div class="fill-label">ディレクトリ構造 <span class="required">必須</span></div>
-            <div class="fill-hint">src/main/java以下のパッケージ構造</div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-src/main/java/
-└── com.example.taskapp/
-    ├── TaskAppApplication.java        # メインクラス
-    ├── config/
-    │   ├── SecurityConfig.java        # Spring Security設定
-    │   └── WebConfig.java             # Web設定
-    ├── controller/
-    │   ├── TaskController.java        # タスク管理
-    │   ├── UserController.java        # ユーザー管理
-    │   └── LoginController.java       # 認証
-    ├── service/
-    │   ├── TaskService.java           # タスクビジネスロジック
-    │   └── UserService.java           # ユーザービジネスロジック
-    ├── repository/
-    │   ├── TaskMapper.java            # タスクDBアクセス
-    │   └── UserMapper.java            # ユーザーDBアクセス
-    ├── entity/
-    │   ├── Task.java                  # タスクエンティティ
-    │   ├── User.java                  # ユーザーエンティティ
-    │   └── Category.java              # カテゴリエンティティ
-    └── form/
-        ├── TaskForm.java              # タスク入力フォーム
-        └── LoginForm.java             # ログインフォーム
-
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">Spring Bootプロジェクトのパッケージ構成をツリー形式で作成してください。
-
-以下のパッケージを含めてください：
-・config（設定クラス）
-・controller（コントローラー）
-・service（サービス）
-・repository（リポジトリ/Mapper）
-・entity（エンティティ）
-・form（フォームクラス）
-
-各ファイルの役割もコメントで記載してください。</div>
+              <pre class="code-block">src/main/java/com/fregrance/app/
+  |- advice/
+  |   `- ApiExceptionHandler.java
+  |- config/
+  |   `- SecurityConfig.java
+  |- controller/
+  |   |- FragrancePageController.java
+  |   |- HealthController.java
+  |   |- QuestionnaireApiController.java
+  |   |- ReservationApiController.java
+  |   `- StaffPageController.java
+  |- dto/
+  |   |- ErrorResponse.java
+  |   |- QuestionnaireResultResponse.java
+  |   |- ReservationResponse.java
+  |   |- ReservationSlotResponse.java
+  |   |- StaffReservationDetail.java
+  |   `- StaffReservationSummary.java
+  |- exception/
+  |   |- InvalidRequestException.java
+  |   |- ReservationConflictException.java
+  |   `- ResourceNotFoundException.java
+  |- form/
+  |   |- QuestionnaireResultForm.java
+  |   `- ReservationForm.java
+  |- mapper/
+  |   |- InstructorMapper.java
+  |   |- QuestionnaireResultMapper.java
+  |   |- ReservationMapper.java
+  |   |- ReservationSlotMapper.java
+  |   `- VisitTypeMapper.java
+  |- model/
+  |   |- Instructor.java
+  |   |- QuestionnaireResult.java
+  |   |- Reservation.java
+  |   |- ReservationSlot.java
+  |   |- StaffReservationRecord.java
+  |   `- VisitType.java
+  `- service/
+      |- QuestionnaireResultService.java
+      |- ReservationService.java
+      |- ReservationSlotService.java
+      `- StaffReservationService.java</pre>
             </div>
           </div>
-
           <div class="fill-block">
             <div class="fill-label">パッケージの役割 <span class="required">必須</span></div>
-            <div class="fill-hint">各パッケージの責務を説明</div>
             <div class="fill-content">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>パッケージ</th><th>役割</th><th>使用するアノテーション</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row"><td>config</td><td>アプリケーション設定</td><td>@Configuration, @EnableWebSecurity</td></tr>
-                  <tr class="template-row"><td>controller</td><td>リクエスト/レスポンス処理</td><td>@Controller, @GetMapping, @PostMapping</td></tr>
-                  <tr class="template-row"><td>service</td><td>ビジネスロジック実装</td><td>@Service, @Transactional</td></tr>
-                  <tr class="template-row"><td>repository</td><td>データベースアクセス</td><td>@Mapper</td></tr>
-                  <tr class="template-row"><td>entity</td><td>データモデル定義</td><td>@Data, @NoArgsConstructor</td></tr>
-                  <tr class="template-row"><td>form</td><td>画面入力データ受け取り</td><td>@Data, @NotBlank, @Size</td></tr>
-                </tbody>
-              </table>
+              <p>画面表示は <code>Controller</code>、JSON API は <code>RestController</code>、業務処理は <code>Service</code>、DB I/O
+                は MyBatis <code>Mapper</code>、入出力定義は <code>Form</code> / <code>DTO</code>、永続化対象は <code>Model</code>
+                に分離している。例外整形は <code>advice</code>、認証設定は <code>config</code>、業務例外は <code>exception</code> に集約する。</p>
             </div>
           </div>
         </section>
 
         <section class="section" id="sec2">
-          <h2 class="section-title"><span class="section-icon">2</span> Entity（エンティティ）</h2>
-
+          <h2 class="section-title"><span class="section-icon">2</span> Model / DTO</h2>
           <div class="fill-block">
-            <div class="fill-label">Task.java <span class="required">必須</span></div>
-            <div class="fill-hint">タスクエンティティのクラス図</div>
+            <div class="fill-label">Reservation / QuestionnaireResult <span class="required">必須</span></div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌────────────────────────────────────────┐
-│              《Entity》                 │
-│                Task                     │
-├────────────────────────────────────────┤
-│ - id: Long                             │
-│ - title: String                        │
-│ - content: String                      │
-│ - dueDate: LocalDate                   │
-│ - priority: Integer                    │
-│ - status: String                       │
-│ - userId: Long                         │
-│ - categoryId: Long                     │
-│ - createdAt: LocalDateTime             │
-│ - updatedAt: LocalDateTime             │
-├────────────────────────────────────────┤
-│ + getter/setter（Lombok @Data）         │
-└────────────────────────────────────────┘
+              <p>現行実装では予約本体とアンケート結果を別モデルで保持する。</p>
+              <pre class="code-block">Reservation
+- Long id
+- String reservationCode
+- Long reservationSlotId
+- Long visitTypeId
+- String visitTypeLabel
+- Integer guestCount
+- String staffMemo
+- String summaryHeadline
+- String questionnaireResultCode
+- String slotLabel
+- boolean vipCustomerFlag
+- LocalDateTime createdAt
+- LocalDateTime updatedAt
 
-アノテーション：
-  @Data
-  @NoArgsConstructor
-  @AllArgsConstructor
-
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">Taskエンティティのクラス図をASCII形式で作成してください。
-
-以下のフィールドを含めてください：
-・id（主キー）
-・title（タイトル）
-・content（内容）
-・dueDate（期限）
-・priority（優先度）
-・status（状態）
-・userId（ユーザーID、外部キー）
-・createdAt/updatedAt（作成日時/更新日時）
-
-使用するLombokアノテーションも記載してください。</div>
+QuestionnaireResult
+- Long id
+- String resultCode
+- String routeCode
+- String step1AnswersJson
+- String step2AnswersJson
+- String graphAxesJson
+- LocalDateTime createdAt
+- LocalDateTime updatedAt</pre>
             </div>
           </div>
-
           <div class="fill-block">
-            <div class="fill-label">User.java <span class="required">必須</span></div>
-            <div class="fill-hint">ユーザーエンティティのクラス図</div>
+            <div class="fill-label">周辺 Model / DTO / Form <span class="required">必須</span></div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌────────────────────────────────────────┐
-│              《Entity》                 │
-│                User                     │
-├────────────────────────────────────────┤
-│ - id: Long                             │
-│ - email: String                        │
-│ - password: String                     │
-│ - name: String                         │
-│ - role: String                         │
-│ - enabled: Boolean                     │
-│ - createdAt: LocalDateTime             │
-│ - updatedAt: LocalDateTime             │
-├────────────────────────────────────────┤
-│ + getter/setter（Lombok @Data）         │
-└────────────────────────────────────────┘
+              <pre class="code-block">ReservationSlot
+- Long id
+- LocalDate slotDate
+- LocalTime slotTime
+- String status
+- Long instructorId
+- String instructorName
 
-（上記を参考に編集してください）
-              </div>
-            </div>
-          </div>
+VisitType
+- Long id
+- String code
+- String name
+- String description
+- boolean deleted
 
-          <div class="fill-block">
-            <div class="fill-label">Category.java <span class="optional">任意</span></div>
-            <div class="fill-hint">カテゴリエンティティのクラス図</div>
-            <div class="fill-content">
-              <div class="ascii-diagram">
-┌────────────────────────────────────────┐
-│              《Entity》                 │
-│              Category                   │
-├────────────────────────────────────────┤
-│ - id: Long                             │
-│ - name: String                         │
-│ - color: String                        │
-│ - userId: Long                         │
-├────────────────────────────────────────┤
-│ + getter/setter（Lombok @Data）         │
-└────────────────────────────────────────┘
+Instructor
+- Long id
+- String name
+- boolean deleted
 
-（上記を参考に編集してください）
-              </div>
+ReservationResponse
+- String reservationCode
+- String slotId
+- String slotLabel
+- String visitType
+- String guestCount
+- String staffMemo
+- String status
+
+QuestionnaireResultResponse
+- String resultCode
+- String routeCode
+- Map&lt;String, String&gt; step1Answers
+- Map&lt;String, String&gt; step2Answers
+- Map&lt;String, Integer&gt; graphAxes</pre>
             </div>
           </div>
         </section>
 
         <section class="section" id="sec3">
-          <h2 class="section-title"><span class="section-icon">3</span> Repository（リポジトリ）</h2>
-
+          <h2 class="section-title"><span class="section-icon">3</span> Mapper</h2>
           <div class="fill-block">
-            <div class="fill-label">TaskMapper.java <span class="required">必須</span></div>
-            <div class="fill-hint">タスクリポジトリのインターフェース定義</div>
+            <div class="fill-label">Mapper 一覧 <span class="required">必須</span></div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌────────────────────────────────────────────────┐
-│              《Interface》                      │
-│               TaskMapper                        │
-│              @Mapper                            │
-├────────────────────────────────────────────────┤
-│ + selectAll(): List&lt;Task&gt;                     │
-│ + selectById(id: Long): Task                   │
-│ + selectByUserId(userId: Long): List&lt;Task&gt;    │
-│ + insert(task: Task): void                     │
-│ + update(task: Task): void                     │
-│ + delete(id: Long): void                       │
-│ + search(keyword: String): List&lt;Task&gt;         │
-└────────────────────────────────────────────────┘
+              <pre class="code-block">QuestionnaireResultMapper
++ insert(QuestionnaireResult questionnaireResult)
++ findByResultCode(String resultCode)
 
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="fill-content" style="margin-top: 16px;">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>メソッド</th><th>引数</th><th>戻り値</th><th>SQL種別</th><th>説明</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row"><td>selectAll</td><td>なし</td><td>List&lt;Task&gt;</td><td>SELECT</td><td>全件取得</td></tr>
-                  <tr class="template-row"><td>selectById</td><td>id: Long</td><td>Task</td><td>SELECT</td><td>ID指定取得</td></tr>
-                  <tr class="template-row"><td>selectByUserId</td><td>userId: Long</td><td>List&lt;Task&gt;</td><td>SELECT</td><td>ユーザー別取得</td></tr>
-                  <tr class="template-row"><td>insert</td><td>task: Task</td><td>void</td><td>INSERT</td><td>新規登録</td></tr>
-                  <tr class="template-row"><td>update</td><td>task: Task</td><td>void</td><td>UPDATE</td><td>更新</td></tr>
-                  <tr class="template-row"><td>delete</td><td>id: Long</td><td>void</td><td>DELETE</td><td>削除</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskMapperインターフェースのクラス図と、各メソッドの詳細一覧表を作成してください。
+ReservationMapper
++ insert(Reservation reservation)
++ findByReservationCode(String reservationCode)
++ findAllForStaff()
++ findDetailForStaff(String reservationCode)
++ updateVipCustomerFlag(String reservationCode, boolean vipCustomerFlag)
++ logicalDeleteByCodes(List&lt;String&gt; reservationCodes)
 
-以下のメソッドを含めてください：
-・selectAll（全件取得）
-・selectById（ID指定取得）
-・selectByUserId（ユーザー別取得）
-・insert（新規登録）
-・update（更新）
-・delete（削除）
-・search（キーワード検索）
+ReservationSlotMapper
++ findAvailableByDate(LocalDate slotDate)
++ findByDateAndTime(LocalDate slotDate, LocalTime slotTime)
++ findById(Long id)
++ updateStatusIfAvailable(Long id, String status)
 
-表には引数、戻り値、SQL種別、説明を含めてください。</div>
+VisitTypeMapper
++ findByCode(String code)
++ findAllActive()
++ findById(Long id)
++ findByName(String name)
++ insert(VisitType visitType)
++ logicalDelete(Long id)
+
+InstructorMapper
++ findAllActive()
++ findById(Long id)
++ findByName(String name)
++ insert(Instructor instructor)
++ logicalDelete(Long id)</pre>
             </div>
           </div>
         </section>
 
         <section class="section" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> Service（サービス）</h2>
-
           <div class="fill-block">
-            <div class="fill-label">TaskService.java <span class="required">必須</span></div>
-            <div class="fill-hint">タスクサービスのクラス定義</div>
+            <div class="fill-label">Service 一覧 <span class="required">必須</span></div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌────────────────────────────────────────────────────┐
-│                   《Service》                       │
-│                   TaskService                       │
-│                   @Service                          │
-├────────────────────────────────────────────────────┤
-│ - taskMapper: TaskMapper                           │
-├────────────────────────────────────────────────────┤
-│ + findAll(): List&lt;Task&gt;                           │
-│ + findById(id: Long): Task                         │
-│ + findByUserId(userId: Long): List&lt;Task&gt;          │
-│ + create(form: TaskForm, userId: Long): void       │
-│ + update(id: Long, form: TaskForm): void           │
-│ + delete(id: Long): void                           │
-│ + search(keyword: String): List&lt;Task&gt;             │
-│ + changeStatus(id: Long, status: String): void     │
-└────────────────────────────────────────────────────┘
+              <pre class="code-block">QuestionnaireResultService
++ createResult(QuestionnaireResultForm form)
++ findByResultCode(String resultCode)
 
-依存関係：
-  TaskService ────▶ TaskMapper （@Autowired）
+ReservationService
++ createReservation(ReservationForm form)
++ findByReservationCode(String reservationCode)
++ findReservationVisitTypeOptions()
 
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskServiceクラスのクラス図を作成してください。
+ReservationSlotService
++ findAvailableSlots(LocalDate date)
 
-以下を含めてください：
-・依存するMapper（TaskMapper）
-・CRUDメソッド
-・検索メソッド
-・ステータス変更メソッド
-
-FormからEntityへの変換処理も説明してください。
-@Transactionalアノテーションの使用箇所も示してください。</div>
+StaffReservationService
++ findAllReservations()
++ findReservations(String visitType, String instructorName, String sortBy, String direction)
++ findVisitTypeOptions()
++ findActiveVisitTypes()
++ findInstructorOptions()
++ findActiveInstructors()
++ countTodayReservations()
++ countAllReservations()
++ findDormantReservations()
++ findReservationDetail(String reservationCode)
++ addVisitType(String name)
++ deleteVisitType(Long id)
++ addInstructor(String name)
++ deleteInstructor(Long id)
++ updateVipCustomerFlag(String reservationCode, boolean vipCustomerFlag)
++ logicalDeleteDormantReservations(List&lt;String&gt; reservationCodes)</pre>
             </div>
           </div>
         </section>
 
         <section class="section" id="sec5">
           <h2 class="section-title"><span class="section-icon">5</span> Controller（コントローラー）</h2>
-
           <div class="fill-block">
-            <div class="fill-label">TaskController.java <span class="required">必須</span></div>
-            <div class="fill-hint">タスクコントローラーのクラス定義</div>
+            <div class="fill-label">Controller 一覧 <span class="required">必須</span></div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌─────────────────────────────────────────────────────────┐
-│                    《Controller》                        │
-│                    TaskController                        │
-│                    @Controller                           │
-│                    @RequestMapping("/tasks")             │
-├─────────────────────────────────────────────────────────┤
-│ - taskService: TaskService                              │
-├─────────────────────────────────────────────────────────┤
-│ + list(model: Model): String                            │
-│ + show(id: Long, model: Model): String                  │
-│ + createForm(model: Model): String                      │
-│ + create(form: TaskForm, result: BindingResult): String │
-│ + editForm(id: Long, model: Model): String              │
-│ + update(id: Long, form: TaskForm, result): String      │
-│ + delete(id: Long): String                              │
-└─────────────────────────────────────────────────────────┘
+              <pre class="code-block">FragrancePageController
++ showTop()
++ showQuestionnaireStep1()
++ showQuestionnaireStep2()
++ showGraph()
++ showReservation(Model model)
++ showReservationComplete()
 
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="fill-content" style="margin-top: 16px;">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>メソッド</th><th>HTTP</th><th>URL</th><th>説明</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row"><td>list</td><td>GET</td><td>/tasks</td><td>一覧表示</td></tr>
-                  <tr class="template-row"><td>show</td><td>GET</td><td>/tasks/{id}</td><td>詳細表示</td></tr>
-                  <tr class="template-row"><td>createForm</td><td>GET</td><td>/tasks/new</td><td>新規作成フォーム</td></tr>
-                  <tr class="template-row"><td>create</td><td>POST</td><td>/tasks</td><td>新規作成処理</td></tr>
-                  <tr class="template-row"><td>editForm</td><td>GET</td><td>/tasks/{id}/edit</td><td>編集フォーム</td></tr>
-                  <tr class="template-row"><td>update</td><td>POST</td><td>/tasks/{id}</td><td>更新処理</td></tr>
-                  <tr class="template-row"><td>delete</td><td>POST</td><td>/tasks/{id}/delete</td><td>削除処理</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskControllerのクラス図とエンドポイント一覧表を作成してください。
+QuestionnaireApiController
++ createQuestionnaireResult(QuestionnaireResultForm form)
++ getQuestionnaireResult(String resultCode)
 
-RESTfulなURL設計で、以下の機能を含めてください：
-・一覧表示（GET /tasks）
-・詳細表示（GET /tasks/{id}）
-・新規作成フォーム（GET /tasks/new）
-・新規作成処理（POST /tasks）
-・編集フォーム（GET /tasks/{id}/edit）
-・更新処理（POST /tasks/{id}）
-・削除処理（POST /tasks/{id}/delete）</div>
+ReservationApiController
++ getAvailableSlots(LocalDate date)
++ createReservation(ReservationForm form)
++ getReservation(String reservationCode)
+
+StaffPageController
++ redirectToReservations()
++ showLogin(Authentication authentication, Model model)
++ showReservationList(...)
++ showReservationDetail(String reservationCode, RedirectAttributes redirectAttributes, Model model)
++ createVisitType(String visitTypeName, RedirectAttributes redirectAttributes)
++ deleteVisitType(Long id, RedirectAttributes redirectAttributes)
++ createInstructor(String instructorName, RedirectAttributes redirectAttributes)
++ deleteInstructor(Long id, RedirectAttributes redirectAttributes)
++ updateVipFlag(String reservationCode, boolean vipCustomerFlag, boolean showDormant, RedirectAttributes redirectAttributes)
++ deleteDormantReservations(List&lt;String&gt; reservationCodes, RedirectAttributes redirectAttributes)
+
+HealthController
++ health()</pre>
             </div>
           </div>
         </section>
 
         <section class="section" id="sec6">
           <h2 class="section-title"><span class="section-icon">6</span> クラス間の依存関係</h2>
-
           <div class="fill-block">
             <div class="fill-label">依存関係図 <span class="required">必須</span></div>
-            <div class="fill-hint">Controller → Service → Repository → Entity の依存関係</div>
             <div class="fill-content">
-              <div class="ascii-diagram">
-┌──────────────────────────────────────────────────────────────────┐
-│                        依存関係図                                  │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                   │
-│   ┌────────────────┐         ┌────────────────┐                  │
-│   │ TaskController │────────▶│  TaskService   │                  │
-│   │ UserController │────────▶│  UserService   │                  │
-│   └────────────────┘         └────────────────┘                  │
-│          │                          │                             │
-│          │ @Autowired               │ @Autowired                  │
-│          ▼                          ▼                             │
-│   ┌────────────────┐         ┌────────────────┐                  │
-│   │   TaskForm     │         │   TaskMapper   │                  │
-│   │   (入力)       │         │   UserMapper   │                  │
-│   └────────────────┘         └────────────────┘                  │
-│                                     │                             │
-│                                     │ MyBatis                     │
-│                                     ▼                             │
-│                              ┌────────────────┐                   │
-│                              │     Task       │                   │
-│                              │     User       │                   │
-│                              │   Category     │                   │
-│                              │   (Entity)     │                   │
-│                              └────────────────┘                   │
-│                                     │                             │
-│                                     ▼                             │
-│                              ┌────────────────┐                   │
-│                              │   Database     │                   │
-│                              │   (MySQL)      │                   │
-│                              └────────────────┘                   │
-│                                                                   │
-└──────────────────────────────────────────────────────────────────┘
+              <pre class="code-block">FragrancePageController --> ReservationService --> VisitTypeMapper
 
-（上記を参考に編集してください）
-              </div>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">Spring Bootアプリケーションのクラス間依存関係をASCII図で作成してください。
+QuestionnaireApiController --> QuestionnaireResultService --> QuestionnaireResultMapper
 
-以下のレイヤーを含めてください：
-・Controller層（TaskController, UserController）
-・Form（TaskForm）
-・Service層（TaskService, UserService）
-・Repository層（TaskMapper, UserMapper）
-・Entity（Task, User, Category）
-・Database
+ReservationApiController --> ReservationSlotService --> ReservationSlotMapper
+ReservationApiController --> ReservationService
+                         --> ReservationMapper
+                         --> ReservationSlotMapper
+                         `-> VisitTypeMapper
 
-DIコンテナによる注入（@Autowired）の関係も示してください。</div>
+StaffPageController --> StaffReservationService
+                     --> ReservationMapper
+                     --> VisitTypeMapper
+                     `-> InstructorMapper
+
+ApiExceptionHandler --> ErrorResponse
+SecurityConfig --> Spring Security FilterChain / InMemoryUserDetailsManager</pre>
             </div>
           </div>
-
           <div class="fill-block">
             <div class="fill-label">DI（依存性注入）の仕組み <span class="optional">任意</span></div>
-            <div class="fill-hint">Spring BootにおけるDIの説明</div>
             <div class="fill-content">
-              <div class="code-block">
-<span class="annotation">@Service</span>
-<span class="keyword">public class</span> TaskService {
-
-    <span class="keyword">private final</span> TaskMapper taskMapper;
-
-    <span class="comment">// コンストラクタインジェクション（推奨）</span>
-    <span class="annotation">@Autowired</span>
-    <span class="keyword">public</span> TaskService(TaskMapper taskMapper) {
-        <span class="keyword">this</span>.taskMapper = taskMapper;
-    }
-
-    <span class="comment">// ビジネスロジックメソッド</span>
-    <span class="keyword">public</span> List&lt;Task&gt; findAll() {
-        <span class="keyword">return</span> taskMapper.selectAll();
-    }
-}
-              </div>
-              <p style="font-size: 13px; color: var(--text-light); margin-top: 12px;">
-                Spring Bootでは、@Autowiredアノテーションを使用してDIコンテナからBeanを注入します。
-                コンストラクタインジェクションが推奨されており、テスタビリティが向上します。
-              </p>
+              <p>各 Controller / Service はコンストラクタインジェクションで依存を受け取る。公開 API 系では <code>ObjectProvider</code> を使い、Mapper
+                未構成時でもアプリを起動できるようにしている一方、スタッフ画面系は DB 前提の <code>Mapper</code> と <code>ObjectMapper</code> を直接注入している。</p>
             </div>
           </div>
         </section>
-
       </div>
     </main>
   </div>
-
   <script src="../js/main.js"></script>
 </body>
+
 </html>

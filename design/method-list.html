@@ -1,162 +1,189 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>メソッド一覧 -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>メソッド一覧 - 香りワークショップ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-  <button class="hamburger" aria-label="メニュー">
-    <span></span><span></span><span></span>
-  </button>
-
+  <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="design"></aside>
-
+    <aside class="sidebar" data-nav-level="design"></aside>
     <main class="main-content">
       <header class="doc-header">
-        <div class="doc-category">DESIGN DOCUMENT</div>
+        <div class="doc-category">DESIGN 02</div>
         <h1 class="doc-title">メソッド一覧</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-04-06</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: 山木秀治</span>
+          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.3</span>
         </div>
       </header>
-
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は 2026-04-06 時点の実装メソッドに合わせて更新しています。仮想の
+          <code>FragranceProfileService</code> や <code>StaffReservationController</code> は現行コードに存在しないため、実在クラスへ置き換えています。
+        </div>
         <div class="toc">
           <div class="toc-title">目次</div>
           <ol class="toc-list">
             <li><a href="#sec1">Controller メソッド一覧</a></li>
             <li><a href="#sec2">Service メソッド一覧</a></li>
-            <li><a href="#sec3">Repository メソッド一覧</a></li>
+            <li><a href="#sec3">Mapper メソッド一覧</a></li>
             <li><a href="#sec4">共通処理・ユーティリティ</a></li>
           </ol>
         </div>
 
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> Controller メソッド一覧</h2>
-
           <div class="fill-block">
-            <div class="fill-label">TaskController <span class="required">必須</span></div>
-            <div class="fill-hint">タスク管理コントローラーの全メソッド</div>
+            <div class="fill-label">Controller <span class="required">必須</span></div>
             <div class="fill-content">
               <table class="doc-table">
                 <thead>
-                  <tr><th>メソッド名</th><th>HTTP</th><th>URL</th><th>引数</th><th>戻り値</th><th>処理概要</th></tr>
+                  <tr>
+                    <th>クラス</th>
+                    <th>メソッド</th>
+                    <th>HTTP</th>
+                    <th>役割</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr class="template-row">
-                    <td>list</td>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showTop()</td>
                     <td>GET</td>
-                    <td>/tasks</td>
-                    <td>Model model</td>
-                    <td>String</td>
-                    <td>タスク一覧を取得してModelに追加、list.htmlを返却</td>
+                    <td>トップページを返す</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>show</td>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showQuestionnaireStep1()</td>
                     <td>GET</td>
-                    <td>/tasks/{id}</td>
-                    <td>@PathVariable Long id, Model model</td>
-                    <td>String</td>
-                    <td>指定IDのタスクを取得、detail.htmlを返却</td>
+                    <td>アンケート STEP1 画面を返す</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>createForm</td>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showQuestionnaireStep2()</td>
                     <td>GET</td>
-                    <td>/tasks/new</td>
-                    <td>Model model</td>
-                    <td>String</td>
-                    <td>空のTaskFormをModelに追加、create.htmlを返却</td>
+                    <td>アンケート STEP2 画面を返す</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>create</td>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showGraph()</td>
+                    <td>GET</td>
+                    <td>香りグラフ画面を返す</td>
+                  </tr>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showReservation(model)</td>
+                    <td>GET</td>
+                    <td>来店種別一覧を積んで予約画面を返す</td>
+                  </tr>
+                  <tr>
+                    <td>FragrancePageController</td>
+                    <td>showReservationComplete()</td>
+                    <td>GET</td>
+                    <td>予約完了画面を返す</td>
+                  </tr>
+                  <tr>
+                    <td>QuestionnaireApiController</td>
+                    <td>createQuestionnaireResult(form)</td>
                     <td>POST</td>
-                    <td>/tasks</td>
-                    <td>@Valid TaskForm form, BindingResult result</td>
-                    <td>String</td>
-                    <td>バリデーション後、タスクを登録してリダイレクト</td>
+                    <td>アンケート結果を保存して resultCode を返す</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>editForm</td>
+                  <tr>
+                    <td>QuestionnaireApiController</td>
+                    <td>getQuestionnaireResult(resultCode)</td>
                     <td>GET</td>
-                    <td>/tasks/{id}/edit</td>
-                    <td>@PathVariable Long id, Model model</td>
-                    <td>String</td>
-                    <td>既存タスクをFormに変換、edit.htmlを返却</td>
+                    <td>resultCode でアンケート結果を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>update</td>
-                    <td>POST</td>
-                    <td>/tasks/{id}</td>
-                    <td>@PathVariable Long id, @Valid TaskForm form, BindingResult result</td>
-                    <td>String</td>
-                    <td>バリデーション後、タスクを更新してリダイレクト</td>
-                  </tr>
-                  <tr class="template-row">
-                    <td>delete</td>
-                    <td>POST</td>
-                    <td>/tasks/{id}/delete</td>
-                    <td>@PathVariable Long id</td>
-                    <td>String</td>
-                    <td>タスクを削除して一覧にリダイレクト</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskControllerの全メソッドを一覧表にしてください。
-
-各メソッドについて以下の情報を含めてください：
-・メソッド名
-・HTTPメソッド（GET/POST）
-・URLパス
-・引数（アノテーション含む）
-・戻り値
-・処理概要
-
-RESTfulなURL設計のCRUD操作を想定してください。</div>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">UserController <span class="optional">任意</span></div>
-            <div class="fill-hint">ユーザー管理コントローラーの全メソッド</div>
-            <div class="fill-content">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>メソッド名</th><th>HTTP</th><th>URL</th><th>引数</th><th>戻り値</th><th>処理概要</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row">
-                    <td>list</td>
+                  <tr>
+                    <td>ReservationApiController</td>
+                    <td>getAvailableSlots(date)</td>
                     <td>GET</td>
-                    <td>/admin/users</td>
-                    <td>Model model</td>
-                    <td>String</td>
-                    <td>ユーザー一覧を取得（管理者のみ）</td>
+                    <td>指定日の空き予約枠を返す</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>profile</td>
-                    <td>GET</td>
-                    <td>/users/profile</td>
-                    <td>@AuthenticationPrincipal User user, Model model</td>
-                    <td>String</td>
-                    <td>ログインユーザーのプロフィール表示</td>
-                  </tr>
-                  <tr class="template-row">
-                    <td>updateProfile</td>
+                  <tr>
+                    <td>ReservationApiController</td>
+                    <td>createReservation(form)</td>
                     <td>POST</td>
-                    <td>/users/profile</td>
-                    <td>@Valid UserForm form, BindingResult result</td>
-                    <td>String</td>
-                    <td>プロフィール更新</td>
+                    <td>予約を登録して確認情報を返す</td>
+                  </tr>
+                  <tr>
+                    <td>ReservationApiController</td>
+                    <td>getReservation(reservationCode)</td>
+                    <td>GET</td>
+                    <td>予約コードで予約情報を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>redirectToReservations()</td>
+                    <td>GET</td>
+                    <td>/staff を一覧画面へ転送する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>showLogin(authentication, model)</td>
+                    <td>GET</td>
+                    <td>スタッフログイン画面を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>showReservationList(...)</td>
+                    <td>GET</td>
+                    <td>一覧検索、並び替え、ページングを行う</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>showReservationDetail(reservationCode, ...)</td>
+                    <td>GET</td>
+                    <td>予約詳細画面を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>createVisitType(visitTypeName, ...)</td>
+                    <td>POST</td>
+                    <td>来店種別を追加する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>deleteVisitType(id, ...)</td>
+                    <td>POST</td>
+                    <td>来店種別を論理削除する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>createInstructor(instructorName, ...)</td>
+                    <td>POST</td>
+                    <td>担当者を追加する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>deleteInstructor(id, ...)</td>
+                    <td>POST</td>
+                    <td>担当者を論理削除する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>updateVipFlag(reservationCode, ...)</td>
+                    <td>POST</td>
+                    <td>VIP フラグを更新する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffPageController</td>
+                    <td>deleteDormantReservations(...)</td>
+                    <td>POST</td>
+                    <td>休眠予約を論理削除する</td>
+                  </tr>
+                  <tr>
+                    <td>HealthController</td>
+                    <td>health()</td>
+                    <td>GET</td>
+                    <td>ヘルスチェック結果を返す</td>
                   </tr>
                 </tbody>
               </table>
@@ -166,119 +193,150 @@ RESTfulなURL設計のCRUD操作を想定してください。</div>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> Service メソッド一覧</h2>
-
           <div class="fill-block">
-            <div class="fill-label">TaskService <span class="required">必須</span></div>
-            <div class="fill-hint">タスクサービスの全メソッド</div>
+            <div class="fill-label">Service <span class="required">必須</span></div>
             <div class="fill-content">
               <table class="doc-table">
                 <thead>
-                  <tr><th>メソッド名</th><th>引数</th><th>戻り値</th><th>処理概要</th><th>呼び出すRepository</th></tr>
+                  <tr>
+                    <th>クラス</th>
+                    <th>メソッド</th>
+                    <th>戻り値</th>
+                    <th>役割</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr class="template-row">
-                    <td>findAll</td>
-                    <td>なし</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>全タスクを取得</td>
-                    <td>taskMapper.selectAll()</td>
+                  <tr>
+                    <td>QuestionnaireResultService</td>
+                    <td>createResult(form)</td>
+                    <td>QuestionnaireResultResponse</td>
+                    <td>アンケート結果を保存し resultCode を採番する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>findById</td>
-                    <td>Long id</td>
-                    <td>Task</td>
-                    <td>ID指定でタスクを取得</td>
-                    <td>taskMapper.selectById(id)</td>
+                  <tr>
+                    <td>QuestionnaireResultService</td>
+                    <td>findByResultCode(resultCode)</td>
+                    <td>QuestionnaireResultResponse</td>
+                    <td>メモリまたは DB からアンケート結果を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>findByUserId</td>
-                    <td>Long userId</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>ユーザー別タスク取得</td>
-                    <td>taskMapper.selectByUserId(userId)</td>
+                  <tr>
+                    <td>ReservationService</td>
+                    <td>createReservation(form)</td>
+                    <td>ReservationResponse</td>
+                    <td>枠状態を更新し予約を登録する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>create</td>
-                    <td>TaskForm form, Long userId</td>
+                  <tr>
+                    <td>ReservationService</td>
+                    <td>findByReservationCode(reservationCode)</td>
+                    <td>ReservationResponse</td>
+                    <td>予約コードから予約を復元する</td>
+                  </tr>
+                  <tr>
+                    <td>ReservationService</td>
+                    <td>findReservationVisitTypeOptions()</td>
+                    <td>List&lt;String&gt;</td>
+                    <td>予約画面用の来店種別一覧を返す</td>
+                  </tr>
+                  <tr>
+                    <td>ReservationSlotService</td>
+                    <td>findAvailableSlots(date)</td>
+                    <td>List&lt;ReservationSlotResponse&gt;</td>
+                    <td>指定日の空き枠を API 用 DTO に変換する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findAllReservations()</td>
+                    <td>List&lt;StaffReservationSummary&gt;</td>
+                    <td>スタッフ画面用の全予約一覧を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findReservations(visitType, instructorName, sortBy, direction)</td>
+                    <td>List&lt;StaffReservationSummary&gt;</td>
+                    <td>条件で絞り込みと並び替えを行う</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findVisitTypeOptions()</td>
+                    <td>List&lt;String&gt;</td>
+                    <td>来店種別フィルタ候補を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findActiveVisitTypes()</td>
+                    <td>List&lt;VisitType&gt;</td>
+                    <td>有効な来店種別を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findInstructorOptions()</td>
+                    <td>List&lt;String&gt;</td>
+                    <td>担当者フィルタ候補を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findActiveInstructors()</td>
+                    <td>List&lt;Instructor&gt;</td>
+                    <td>有効な担当者を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>countTodayReservations()</td>
+                    <td>int</td>
+                    <td>当日予約件数を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>countAllReservations()</td>
+                    <td>int</td>
+                    <td>全予約件数を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findDormantReservations()</td>
+                    <td>List&lt;StaffReservationSummary&gt;</td>
+                    <td>6か月超の非 VIP 予約を抽出する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>findReservationDetail(reservationCode)</td>
+                    <td>StaffReservationDetail</td>
+                    <td>予約詳細とアンケート連携情報を返す</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>addVisitType(name)</td>
                     <td>void</td>
-                    <td>FormからEntityに変換して登録</td>
-                    <td>taskMapper.insert(task)</td>
+                    <td>来店種別を追加する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>update</td>
-                    <td>Long id, TaskForm form</td>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>deleteVisitType(id)</td>
                     <td>void</td>
-                    <td>既存タスクを更新</td>
-                    <td>taskMapper.update(task)</td>
+                    <td>来店種別を論理削除する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>delete</td>
-                    <td>Long id</td>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>addInstructor(name)</td>
                     <td>void</td>
-                    <td>タスクを削除</td>
-                    <td>taskMapper.delete(id)</td>
+                    <td>担当者を追加する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>search</td>
-                    <td>String keyword</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>キーワードでタスク検索</td>
-                    <td>taskMapper.search(keyword)</td>
-                  </tr>
-                  <tr class="template-row">
-                    <td>changeStatus</td>
-                    <td>Long id, String status</td>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>deleteInstructor(id)</td>
                     <td>void</td>
-                    <td>タスクのステータス変更</td>
-                    <td>taskMapper.updateStatus(id, status)</td>
+                    <td>担当者を論理削除する</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskServiceの全メソッドを一覧表にしてください。
-
-各メソッドについて以下の情報を含めてください：
-・メソッド名
-・引数
-・戻り値
-・処理概要
-・呼び出すRepositoryメソッド
-
-@Transactionalを付けるべきメソッドも示してください。</div>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">UserService <span class="optional">任意</span></div>
-            <div class="fill-hint">ユーザーサービスの全メソッド</div>
-            <div class="fill-content">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>メソッド名</th><th>引数</th><th>戻り値</th><th>処理概要</th><th>呼び出すRepository</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row">
-                    <td>findByEmail</td>
-                    <td>String email</td>
-                    <td>User</td>
-                    <td>メールアドレスでユーザー取得</td>
-                    <td>userMapper.selectByEmail(email)</td>
-                  </tr>
-                  <tr class="template-row">
-                    <td>register</td>
-                    <td>UserForm form</td>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>updateVipCustomerFlag(reservationCode, vipCustomerFlag)</td>
                     <td>void</td>
-                    <td>パスワードハッシュ化して登録</td>
-                    <td>userMapper.insert(user)</td>
+                    <td>VIP フラグを更新する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>updateProfile</td>
-                    <td>Long id, UserForm form</td>
-                    <td>void</td>
-                    <td>プロフィール情報更新</td>
-                    <td>userMapper.update(user)</td>
+                  <tr>
+                    <td>StaffReservationService</td>
+                    <td>logicalDeleteDormantReservations(reservationCodes)</td>
+                    <td>int</td>
+                    <td>指定された休眠予約を論理削除する</td>
                   </tr>
                 </tbody>
               </table>
@@ -287,141 +345,133 @@ RESTfulなURL設計のCRUD操作を想定してください。</div>
         </section>
 
         <section class="section" id="sec3">
-          <h2 class="section-title"><span class="section-icon">3</span> Repository メソッド一覧</h2>
-
+          <h2 class="section-title"><span class="section-icon">3</span> Mapper メソッド一覧</h2>
           <div class="fill-block">
-            <div class="fill-label">TaskMapper <span class="required">必須</span></div>
-            <div class="fill-hint">タスクマッパーの全メソッド</div>
+            <div class="fill-label">Mapper <span class="required">必須</span></div>
             <div class="fill-content">
               <table class="doc-table">
                 <thead>
-                  <tr><th>メソッド名</th><th>引数</th><th>戻り値</th><th>SQL種別</th><th>備考</th></tr>
+                  <tr>
+                    <th>クラス</th>
+                    <th>メソッド</th>
+                    <th>概要</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr class="template-row">
-                    <td>selectAll</td>
-                    <td>なし</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>SELECT</td>
-                    <td>全件取得、作成日時降順</td>
+                  <tr>
+                    <td>QuestionnaireResultMapper</td>
+                    <td>insert(questionnaireResult)</td>
+                    <td>アンケート結果を保存する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>selectById</td>
-                    <td>Long id</td>
-                    <td>Task</td>
-                    <td>SELECT</td>
-                    <td>主キー検索</td>
+                  <tr>
+                    <td>QuestionnaireResultMapper</td>
+                    <td>findByResultCode(resultCode)</td>
+                    <td>結果コードでアンケート結果を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>selectByUserId</td>
-                    <td>Long userId</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>SELECT</td>
-                    <td>外部キー検索</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>insert(reservation)</td>
+                    <td>予約本体を保存する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>insert</td>
-                    <td>Task task</td>
-                    <td>void</td>
-                    <td>INSERT</td>
-                    <td>@Options(useGeneratedKeys=true)</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>findByReservationCode(reservationCode)</td>
+                    <td>予約コードで予約を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>update</td>
-                    <td>Task task</td>
-                    <td>void</td>
-                    <td>UPDATE</td>
-                    <td>updated_atも更新</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>findAllForStaff()</td>
+                    <td>スタッフ一覧用の予約レコード群を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>updateStatus</td>
-                    <td>Long id, String status</td>
-                    <td>void</td>
-                    <td>UPDATE</td>
-                    <td>ステータスのみ更新</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>findDetailForStaff(reservationCode)</td>
+                    <td>スタッフ詳細用の予約レコードを取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>delete</td>
-                    <td>Long id</td>
-                    <td>void</td>
-                    <td>DELETE</td>
-                    <td>物理削除</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>updateVipCustomerFlag(reservationCode, vipCustomerFlag)</td>
+                    <td>VIP フラグを更新する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>search</td>
-                    <td>String keyword</td>
-                    <td>List&lt;Task&gt;</td>
-                    <td>SELECT</td>
-                    <td>LIKE検索（title, content）</td>
+                  <tr>
+                    <td>ReservationMapper</td>
+                    <td>logicalDeleteByCodes(reservationCodes)</td>
+                    <td>予約を論理削除する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>countByUserId</td>
-                    <td>Long userId</td>
-                    <td>int</td>
-                    <td>SELECT</td>
-                    <td>ユーザー別件数取得</td>
+                  <tr>
+                    <td>ReservationSlotMapper</td>
+                    <td>findAvailableByDate(slotDate)</td>
+                    <td>指定日の予約可能枠を取得する</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">TaskMapperの全メソッドを一覧表にしてください。
-
-各メソッドについて以下の情報を含めてください：
-・メソッド名
-・引数
-・戻り値
-・SQL種別（SELECT/INSERT/UPDATE/DELETE）
-・備考（ソート順、LIKE検索条件など）
-
-MyBatisアノテーション形式での実装を想定してください。</div>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">UserMapper <span class="optional">任意</span></div>
-            <div class="fill-hint">ユーザーマッパーの全メソッド</div>
-            <div class="fill-content">
-              <table class="doc-table">
-                <thead>
-                  <tr><th>メソッド名</th><th>引数</th><th>戻り値</th><th>SQL種別</th><th>備考</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="template-row">
-                    <td>selectAll</td>
-                    <td>なし</td>
-                    <td>List&lt;User&gt;</td>
-                    <td>SELECT</td>
-                    <td>管理者用一覧取得</td>
+                  <tr>
+                    <td>ReservationSlotMapper</td>
+                    <td>findByDateAndTime(slotDate, slotTime)</td>
+                    <td>日時で予約枠を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>selectById</td>
-                    <td>Long id</td>
-                    <td>User</td>
-                    <td>SELECT</td>
-                    <td>主キー検索</td>
+                  <tr>
+                    <td>ReservationSlotMapper</td>
+                    <td>findById(id)</td>
+                    <td>ID で予約枠を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>selectByEmail</td>
-                    <td>String email</td>
-                    <td>User</td>
-                    <td>SELECT</td>
-                    <td>ログイン認証用</td>
+                  <tr>
+                    <td>ReservationSlotMapper</td>
+                    <td>updateStatusIfAvailable(id, status)</td>
+                    <td>予約可能な場合のみ枠状態を更新する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>insert</td>
-                    <td>User user</td>
-                    <td>void</td>
-                    <td>INSERT</td>
-                    <td>ユーザー登録</td>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>findByCode(code)</td>
+                    <td>コードで来店種別を取得する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>update</td>
-                    <td>User user</td>
-                    <td>void</td>
-                    <td>UPDATE</td>
-                    <td>プロフィール更新</td>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>findAllActive()</td>
+                    <td>有効な来店種別一覧を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>findById(id)</td>
+                    <td>ID で来店種別を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>findByName(name)</td>
+                    <td>名称で来店種別を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>insert(visitType)</td>
+                    <td>来店種別を追加する</td>
+                  </tr>
+                  <tr>
+                    <td>VisitTypeMapper</td>
+                    <td>logicalDelete(id)</td>
+                    <td>来店種別を論理削除する</td>
+                  </tr>
+                  <tr>
+                    <td>InstructorMapper</td>
+                    <td>findAllActive()</td>
+                    <td>有効な担当者一覧を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>InstructorMapper</td>
+                    <td>findById(id)</td>
+                    <td>ID で担当者を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>InstructorMapper</td>
+                    <td>findByName(name)</td>
+                    <td>名称で担当者を取得する</td>
+                  </tr>
+                  <tr>
+                    <td>InstructorMapper</td>
+                    <td>insert(instructor)</td>
+                    <td>担当者を追加する</td>
+                  </tr>
+                  <tr>
+                    <td>InstructorMapper</td>
+                    <td>logicalDelete(id)</td>
+                    <td>担当者を論理削除する</td>
                   </tr>
                 </tbody>
               </table>
@@ -431,108 +481,96 @@ MyBatisアノテーション形式での実装を想定してください。</di
 
         <section class="section" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> 共通処理・ユーティリティ</h2>
-
           <div class="fill-block">
-            <div class="fill-label">日付変換・フォーマット <span class="optional">任意</span></div>
-            <div class="fill-hint">日付関連のユーティリティメソッド</div>
+            <div class="fill-label">例外・認証・変換 <span class="optional">任意</span></div>
             <div class="fill-content">
               <table class="doc-table">
                 <thead>
-                  <tr><th>処理</th><th>使用クラス/メソッド</th><th>変換元</th><th>変換先</th><th>用途</th></tr>
+                  <tr>
+                    <th>対象</th>
+                    <th>役割</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr class="template-row">
-                    <td>文字列→日付</td>
-                    <td>LocalDate.parse()</td>
-                    <td>String "2026-01-15"</td>
-                    <td>LocalDate</td>
-                    <td>フォーム入力値の変換</td>
+                  <tr>
+                    <td>ApiExceptionHandler</td>
+                    <td>業務例外と Bean Validation 例外を ErrorResponse に整形する</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>日付→文字列</td>
-                    <td>DateTimeFormatter</td>
-                    <td>LocalDate</td>
-                    <td>String "2026年1月15日"</td>
-                    <td>画面表示用</td>
+                  <tr>
+                    <td>SecurityConfig</td>
+                    <td>公開ページ許可、/staff/** 保護、フォームログイン設定を行う</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>現在日時取得</td>
-                    <td>LocalDateTime.now()</td>
-                    <td>-</td>
-                    <td>LocalDateTime</td>
-                    <td>作成日時・更新日時</td>
+                  <tr>
+                    <td>ReservationSlotService.toResponse(slot)</td>
+                    <td>予約枠モデルを API 応答 DTO に変換する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService.buildComparator(sortBy)</td>
+                    <td>一覧ソート条件に応じた Comparator を生成する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService.readStringMap / readIntegerMap</td>
+                    <td>JSON 列を Map に復元する</td>
+                  </tr>
+                  <tr>
+                    <td>StaffReservationService.buildVisitTypeCode(name)</td>
+                    <td>来店種別コードを一意に生成する</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AI プロンプト例</div>
-              <div class="prompt-text">Spring Bootで使用する日付変換処理の一覧を作成してください。
-
-以下のパターンを含めてください：
-・String → LocalDate（フォーム入力値）
-・LocalDate → String（画面表示用）
-・現在日時の取得（LocalDateTime.now()）
-
-Thymeleafでの表示フォーマット（#temporals）も示してください。</div>
-            </div>
           </div>
-
           <div class="fill-block">
             <div class="fill-label">バリデーション関連 <span class="optional">任意</span></div>
-            <div class="fill-hint">Bean Validationアノテーション一覧</div>
             <div class="fill-content">
               <table class="doc-table">
                 <thead>
-                  <tr><th>アノテーション</th><th>対象フィールド</th><th>検証内容</th><th>エラーメッセージ</th></tr>
+                  <tr>
+                    <th>対象</th>
+                    <th>検証内容</th>
+                    <th>メッセージ例</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr class="template-row">
-                    <td>@NotBlank</td>
-                    <td>title</td>
-                    <td>空文字・null禁止</td>
-                    <td>タイトルは必須です</td>
+                  <tr>
+                    <td>QuestionnaireResultForm.routeCode</td>
+                    <td>必須、32文字以内</td>
+                    <td>routeCode is required</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>@Size(max=100)</td>
-                    <td>title</td>
-                    <td>最大100文字</td>
-                    <td>タイトルは100文字以内で入力してください</td>
+                  <tr>
+                    <td>step1Answers / step2Answers</td>
+                    <td>必須、key/value ごとの空欄・長さ制限</td>
+                    <td>step1Answers value must not be blank</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>@Size(max=1000)</td>
-                    <td>content</td>
-                    <td>最大1000文字</td>
-                    <td>内容は1000文字以内で入力してください</td>
+                  <tr>
+                    <td>graphAxes</td>
+                    <td>必須、各値は 0..100</td>
+                    <td>graphAxes value must be between 0 and 100</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>@NotNull</td>
-                    <td>dueDate</td>
-                    <td>null禁止</td>
-                    <td>期限を選択してください</td>
+                  <tr>
+                    <td>ReservationForm.slotId ほか</td>
+                    <td>必須</td>
+                    <td>slotId is required</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>@Email</td>
-                    <td>email</td>
-                    <td>メール形式</td>
-                    <td>正しいメールアドレスを入力してください</td>
+                  <tr>
+                    <td>ReservationForm.staffMemo</td>
+                    <td>500文字以内</td>
+                    <td>staffMemo must be 500 characters or less</td>
                   </tr>
-                  <tr class="template-row">
-                    <td>@Pattern</td>
-                    <td>password</td>
-                    <td>正規表現</td>
-                    <td>パスワードは8文字以上で入力してください</td>
+                  <tr>
+                    <td>予約業務検証</td>
+                    <td>来店種別存在、枠存在、枠競合を確認</td>
+                    <td>Selected reservation slot is no longer available</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </section>
-
       </div>
     </main>
   </div>
-
   <script src="../js/main.js"></script>
 </body>
+
 </html>
