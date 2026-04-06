@@ -1,47 +1,48 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>振り返り・技術記事 -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>振り返り・評価記録 - 香りワークショップ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
   <button class="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
         <div class="doc-category">DOCUMENT 10</div>
-        <h1 class="doc-title">振り返り・技術記事</h1>
+        <h1 class="doc-title">振り返り・評価記録</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-18</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：山木秀治</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日: 2026-03-16</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: Codex</span>
           <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
         </div>
       </header>
 
       <div class="doc-body">
-
+        <div class="info-box info"><strong>運用注記</strong> 本資料は Spring Boot
+          実装前提で整理した作業用ドキュメントです。内容は今後の作業進行に応じて追記・更新する前提であり、この時点では未記入項目や今後の実装検討事項を含みます。着手前には対象画面、関連Markdown、最新の引継ぎメモを確認したうえで反映してください。
+        </div>
         <div class="external-link-box">
           <div class="external-link-box-title">
             <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
+            対象プロジェクト
           </div>
           <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細な振り返りは以下のリンクからご確認ください。
+            トップページ、アンケート、香りグラフ、予約導線を含む香りワークショップ全体の制作を対象にした振り返りです。
           </div>
           <div class="external-link-input">
-            <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-10">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-10').value || 'https://docs.google.com', '_blank'); return false;">
-              <span class="material-symbols-outlined">open_in_new</span>
-              開く
-            </a>
+            <input type="text" value="Fragrance Workshop front-end flow" readonly>
           </div>
         </div>
 
@@ -49,8 +50,8 @@
           <div class="toc-title">目次</div>
           <ol class="toc-list">
             <li><a href="#sec1">プロジェクト振り返り</a></li>
-            <li><a href="#sec2">技術記事</a></li>
-            <li><a href="#sec3">自己評価</a></li>
+            <li><a href="#sec2">評価記録</a></li>
+            <li><a href="#sec3">自己学習</a></li>
             <li><a href="#sec4">今後の学習計画</a></li>
           </ol>
         </div>
@@ -58,187 +59,165 @@
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> プロジェクト振り返り</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">企画・設計段階の振り返り <span class="required">必須</span></div>
-          <div class="fill-hint">マーケットリサーチ、ペルソナ設計、情報設計について</div>
-          <div class="fill-content">
-            <p>（企画・設計段階の振り返りを記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">要件・設計面の振り返り <span class="required">必須</span></div>
+            <div class="fill-hint">うまくいったこと、難しかったこと、次回改善点を記載</div>
+            <div class="fill-content">
+              <p>
+                要件面では、「診断」ではなく「来店前の香りづくり準備」として体験全体を設計できた点が良かったです。トップページで期待値を上げ、アンケートで負荷を抑え、グラフで納得感を作り、予約ページで来店意思を固める流れは、各画面の役割分担が明確でした。一方で、質問分岐、グラフ調整、予約導線をすべて連動させる設計は複雑で、仕様整理を先に固めないと実装判断がぶれやすい課題がありました。次回は、画面遷移図とデータの受け渡し仕様を初期段階でより明文化し、バックエンド保存前提の設計まで先に考えて作成に移る方がよかったと感じました。。
+              </p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下のプロジェクト情報をもとに、企画・設計段階の振り返りを作成してください。
 
-【うまくいったこと】
-（自分が感じたことを箇条書きで記載）
+          <div class="fill-block">
+            <div class="fill-label">デザイン面の振り返り <span class="required">必須</span></div>
+            <div class="fill-hint">UI、ワイヤー、見せ方の観点で整理</div>
+            <div class="fill-content">
+              <p>
+                デザイン面では、静かな高級感と親しみやすさを両立する方向性を各ページで維持できた点が成果でした。アンケートの選択肢画像や香りグラフの見せ方により、抽象的な香りの好みを直感的に扱いやすくできています。改善点としては、予約ページの設計が甘く、初見ユーザーには優先順位が分かりづらくなる可能性があります。重要CTA、入力欄、補足説明の視線誘導をさらに絞り、スマートフォンでの読みやすさも含めて情報整理を強めたいです。
+              </p>
+            </div>
+          </div>
 
-【苦労したこと】
-（自分が感じたことを箇条書きで記載）
+          <div class="fill-block">
+            <div class="fill-label">フロントエンド実装面の振り返り <span class="required">必須</span></div>
+            <div class="fill-hint">HTML/CSS/JavaScript 実装の学びと反省</div>
+            <div class="fill-content">
+              <p>フロントエンド実装では、`sessionStorage`
+                を使って複数画面のデータをつなぎ、状態を引き継ぐ構成をシンプルにまとめられた点が良かったです。特にアンケートから予約までをサーバー無しで成立させたことで、導線確認を素早く回せました。一方で、ロジックが各HTML内で分散しており、今後の拡張や保守では見通しが悪くなる懸念があります。全体の共通化分岐条件、最終的な設計までを先に用意しておくべきでした。
+              </p>
+            </div>
+          </div>
 
-上記をもとに、振り返り文章を200〜300字で作成してください。
-次回への改善点も含めてください。</div>
-          <div class="prompt-note">💡 自分自身の経験を元に書いてください。AIは文章の構成や表現の改善に活用しましょう。</div>
+          <div class="fill-block">
+            <div class="fill-label">バックエンド実装面の振り返り <span class="required">必須</span></div>
+            <div class="fill-hint">Java / Spring Boot 前提での反省と改善</div>
+            <div class="fill-content">
+              <p>バックエンド実装面では、Spring Boot 導入前に必要な API 単位、DB 項目、状態遷移を先に文書化できた点は前進です。一方で、実装着手前の段階では Controller / Service /
+                Mapper の責務分割、バリデーション方式、トランザクション設計をさらに具体化する必要があります。また、実装している途中で不足項目に気づくなど、本来は最初に全てを整えておくべきでした。</p>
+            </div>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">デザイン段階の振り返り <span class="required">必須</span></div>
-          <div class="fill-hint">デザインガイドライン、ワイヤーフレーム、Figma作業について</div>
-          <div class="fill-content">
-            <p>（デザイン段階の振り返りを記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（同様の形式で振り返りを作成）</div>
-          </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">フロントエンド実装の振り返り <span class="required">必須</span></div>
-          <div class="fill-hint">HTML/CSS/JavaScript の実装について</div>
-          <div class="fill-content">
-            <p>（フロントエンド実装の振り返りを記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（同様の形式で振り返りを作成）</div>
-          </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">バックエンド実装の振り返り <span class="required">必須</span></div>
-          <div class="fill-hint">Java/Spring Boot の実装について</div>
-          <div class="fill-content">
-            <p>（バックエンド実装の振り返りを記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">（同様の形式で振り返りを作成）</div>
-          </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">全体を通しての学び <span class="required">必須</span></div>
-          <div class="fill-hint">32日間のプロジェクト全体を通して学んだこと</div>
-          <div class="fill-content">
-            <p>（全体の振り返りを記載）</p>
-          </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下のプロジェクト全体の経験をもとに、総合的な振り返りを300〜400字で作成してください。
 
-【一番成長したスキル】（記載）
-【一番苦労したこと】（記載）
-【プロンプトプログラミングの感想】（記載）
-【チュートリアルで特に役立ったもの】（記載）</div>
+          <div class="fill-block">
+            <div class="fill-label">全体を通しての学び <span class="required">必須</span></div>
+            <div class="fill-hint">今回の制作で得た知見を簡潔に整理</div>
+            <div class="fill-content">
+              <p>
+                今回の制作を通して、体験設計と画面実装は切り離せず、特に「どこで期待を上げ、どこで迷わせず、どこで納得させるか」を先に決めることが重要だと学びました。また、フロントだけで素早く体験を組み立てる有効性と、その一方でバックエンド連携を後回しにすると設計負債が生まれやすいことも実感しました。
+              </p>
+            </div>
           </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> 技術記事</h2>
 
-          <div class="info-box info">
-            <strong>技術記事を1つ以上作成してください</strong>
-            制作中に苦労した技術トピックを選び、ブログ記事のような形式で書いてください。<br>
-            この記事は就職活動で「学習力」と「発信力」をアピールする重要な材料になります。
-          </div>
-
           <div class="fill-block">
             <div class="fill-label">技術記事タイトル <span class="required">必須</span></div>
-            <div class="fill-content"><p>（記事タイトルを入力。例：「Spring SecurityでログインEを実装する手順」）</p></div>
-            <div class="prompt-box">
-              <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-              <div class="prompt-text">以下の技術トピックについてブログ記事を書きたいです。記事の構成を考えてください。
-
-テーマ：（技術トピックを記載）
-読者：プログラミング初学者・就職活動中の専門学校生
-文量：1500〜2000字
-
-以下の構成で書いてください。
-1. はじめに（何をしたかったか）
-2. 課題（何が難しかったか）
-3. 調査（どのように調べたか）
-4. 実装（コード付きで解説）
-5. 結果（どう解決したか）
-6. 学び（何を得たか）</div>
-              <div class="prompt-note">💡 AIで構成を作り、自分の経験に基づいて内容を修正・肉付けしてください</div>
+            <div class="fill-content">
+              <p>香りワークショップ制作におけるフロント主導の体験設計評価</p>
             </div>
           </div>
 
-        <div class="fill-block">
-          <div class="fill-label">記事本文 <span class="required">必須</span></div>
-          <div class="fill-hint">上記の構成に沿って記事本文を記載。コードブロックを含めてください。</div>
-          <div class="fill-content">
-            <p>（記事本文をここに記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">記事本文 <span class="required">必須</span></div>
+            <div class="fill-hint">第三者評価を想定した総評</div>
+            <div class="fill-content">
+              <p>
+                来店前体験を複数画面で一貫したコンセプトのもとに構成し、ユーザーの完走率と予約導線を意識した設計ができている点は高く評価できます。特に、アンケートを単なる質問一覧ではなく、香り体験の準備として見せている点に企画的な強みがあります。一方で、データ永続化や自動テスト、運用時の予約管理など、実務運用に移るための基盤整備は今後の課題です。総じて、体験設計力とフロント表現力に強みがあり、次段階では実装基盤の強化が求められます。
+              </p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">上記の構成で、以下の技術トピックについて記事本文を書いてください。
-
-テーマ：（技術トピック）
-実際に書いたコード：（コードを貼り付け）
-苦労した点：（自分の経験を記載）
-解決方法：（どう解決したか記載）
-
-コードブロックには説明コメントを付けてください。
-専門用語は初学者にもわかるよう簡潔に説明してください。</div>
-          </div>
-        </div>
-
         </section>
 
         <section class="section" id="sec3">
-          <h2 class="section-title"><span class="section-icon">3</span> 自己評価</h2>
+          <h2 class="section-title"><span class="section-icon">3</span> 自己学習</h2>
 
           <div class="fill-block">
             <div class="fill-label">スキル自己評価 <span class="required">必須</span></div>
-            <div class="fill-hint">各スキルを5段階（★）で自己評価し、コメントを記載してください</div>
-        <table class="doc-table">
-          <thead><tr><th>スキル領域</th><th>自己評価</th><th>コメント</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>HTML/CSS</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>JavaScript</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Java</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Spring Boot</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>データベース</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>UI/UXデザイン</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Figma</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>Git/GitHub</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>AI活用（プロンプト）</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          <tr class="template-row"><td>マーケティング</td><td>（★★★☆☆ 等）</td><td>（できること・課題を簡潔に）</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-hint">今回の制作を通した自己評価と理由</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>スキル項目</th>
+                  <th>自己評価</th>
+                  <th>コメント</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>HTML/CSS</td>
+                  <td>4/5</td>
+                  <td>複数画面で一貫したUIを整えられたが、共通化の余地がある</td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td>4/5</td>
+                  <td>`sessionStorage` を使った画面間連携を実装できた</td>
+                </tr>
+                <tr>
+                  <td>Java</td>
+                  <td>3/5</td>
+                  <td>Spring Boot 実装を前提に責務整理と設計準備を進められている</td>
+                </tr>
+                <tr>
+                  <td>Spring Boot</td>
+                  <td>3/5</td>
+                  <td>API、DB、認証の実装方針を整理し、着手準備が整っている</td>
+                </tr>
+                <tr>
+                  <td>データベース</td>
+                  <td>2/5</td>
+                  <td>設計は可能だが、実装と接続確認が未実施</td>
+                </tr>
+                <tr>
+                  <td>UI/UXデザイン</td>
+                  <td>4/5</td>
+                  <td>導線設計と視覚的トーンの統一を意識できた</td>
+                </tr>
+                <tr>
+                  <td>Figma</td>
+                  <td>3/5</td>
+                  <td>ワイヤーの意図理解はできるが、運用強化余地がある</td>
+                </tr>
+                <tr>
+                  <td>Git/GitHub</td>
+                  <td>3/5</td>
+                  <td>変更管理は可能だが、レビュー前提の整理をさらに強化したい</td>
+                </tr>
+                <tr>
+                  <td>AI活用</td>
+                  <td>4/5</td>
+                  <td>仕様整理や文書生成の補助として有効に使えた</td>
+                </tr>
+                <tr>
+                  <td>マーケティング</td>
+                  <td>3/5</td>
+                  <td>体験価値訴求を意識したが、CV観点の検証は今後必要</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> 今後の学習計画</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">今後学びたい技術・分野 <span class="required">必須</span></div>
-          <div class="fill-hint">今後のキャリアに向けて学習したい技術やスキル</div>
-          <div class="fill-content">
-            <p>（今後の学習計画を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">今後学びたい課題・スキル <span class="required">必須</span></div>
+            <div class="fill-hint">次の制作に向けた具体的な学習計画</div>
+            <div class="fill-content">
+              <p>今後は、予約保存 API の実装、DB
+                設計の実装反映、入力バリデーション、自動テスト整備を優先して学びます。フロント面では、状態管理の整理、共通コンポーネント化、モバイルでの情報設計改善に取り組みます。あわせて、予約率や離脱率といった運用指標をもとに改善判断できるよう、簡易的な計測設計や分析視点も強化したいです。
+              </p>
+            </div>
           </div>
-          <div class="prompt-box">
-            <div class="prompt-title"><span class="material-symbols-outlined icon-sm">smart_toy</span> AIプロンプト例</div>
-            <div class="prompt-text">以下の自己評価をもとに、今後の学習計画を提案してください。
-
-（自己評価の内容を貼り付け）
-
-希望する職種：（希望職種を記載）
-
-以下を含めてください。
-・短期的に学ぶべきこと（3ヶ月以内）
-・中期的に学ぶべきこと（半年〜1年）
-・推奨する学習リソース</div>
-          </div>
-        </div>
-
         </section>
-
       </div>
     </main>
   </div>
 
   <script src="../js/main.js"></script>
 </body>
+
 </html>
